@@ -11,7 +11,7 @@ Public marketplace for BlueAlpha's Claude plugins. Built for performance markete
 In Claude Code, type:
 
 ```
-/plugin marketplace add bluealpha-labs/bluealpha-plugins
+/plugin marketplace add https://github.com/bluealpha-labs/bluealpha-plugins.git
 /plugin install bluealpha-marketing-plugin
 ```
 

@@ -20,7 +20,7 @@ This file is for you (the maintainer), not for end users. It explains how to tak
 
 **Path A — marketplace install (recommended):**
 ```
-/plugin marketplace add bluealpha-labs/bluealpha-plugins
+/plugin marketplace add https://github.com/bluealpha-labs/bluealpha-plugins.git
 /plugin install bluealpha-marketing-plugin
 ```
 

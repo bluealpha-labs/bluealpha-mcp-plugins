@@ -21,7 +21,7 @@ Pick one path.
 **From the marketplace (recommended):** in Claude, type:
 
 ```
-/plugin marketplace add bluealpha-labs/bluealpha-plugins
+/plugin marketplace add https://github.com/bluealpha-labs/bluealpha-plugins.git
 /plugin install bluealpha-marketing-plugin
 ```
 
