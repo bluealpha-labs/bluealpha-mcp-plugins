@@ -8,7 +8,7 @@ Public marketplace for BlueAlpha's Claude plugins. Built for performance markete
 
 ## Install
 
-In Claude (Cowork mode or desktop), type:
+In Claude Code, type:
 
 ```
 /plugin marketplace add bluealpha-labs/bluealpha-plugins
