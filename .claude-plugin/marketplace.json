@@ -1,0 +1,21 @@
+{
+  "name": "bluealpha-plugins",
+  "owner": {
+    "name": "BlueAlpha",
+    "url": "https://bluealpha.ai"
+  },
+  "metadata": {
+    "description": "BlueAlpha's public Claude plugins for performance marketers — Google Ads strategy, MMM-backed analysis, and incrementality testing.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "bluealpha-marketing-plugin",
+      "source": "./plugins/bluealpha-marketing-plugin",
+      "description": "Paid media strategy, analysis, and measurement for Google Ads, powered by BlueAlpha's marketing mix model. 10 skills covering competitive conquest, SEO/paid coverage, creative refresh, audience intelligence, geo expansion, incrementality testing, and full-account audits.",
+      "version": "0.2.0",
+      "category": "marketing",
+      "keywords": ["google-ads", "paid-media", "mmm", "incrementality", "performance-marketing"]
+    }
+  ]
+}

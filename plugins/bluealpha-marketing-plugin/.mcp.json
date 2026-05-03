@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "bluealpha-mcp": {
+      "type": "http",
+      "url": "https://consumer.mcp.bluealpha.ai/mcp"
+    }
+  }
+}

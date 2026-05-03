@@ -1,0 +1,19 @@
+{
+  "name": "bluealpha-marketing-plugin",
+  "version": "0.2.0",
+  "description": "Paid media strategy, analysis, and measurement powered by BlueAlpha's unified MCP (Google Ads + Meridian MMM). 10 skills covering competitive conquest, SEO-paid bridging, creative refresh, audience intelligence, incrementality testing, geo expansion, and full-account optimization — all analysis-only with execution routed through the BlueAlpha pipeline. Requires the bluealpha-mcp connector.",
+  "author": {
+    "name": "BlueAlpha"
+  },
+  "homepage": "https://bluealpha.ai",
+  "keywords": [
+    "google-ads",
+    "marketing",
+    "mmm",
+    "paid-media",
+    "incrementality",
+    "audience-intelligence",
+    "campaign-strategy",
+    "bluealpha-mcp"
+  ]
+}
