@@ -23,4 +23,4 @@ You can also install the plugin from a single `.plugin` file. See the [latest re
 
 ## Support
 
-Email support@bluealpha.ai or visit [bluealpha.ai](https://bluealpha.ai).
+Email ai@bluealpha.ai.
