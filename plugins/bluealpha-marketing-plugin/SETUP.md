@@ -6,26 +6,37 @@ Two pieces to install: the **BlueAlpha MCP** connector (so Claude can read your 
 
 1. Open **Settings** in the Claude desktop app
 2. Go to **Connectors → Add custom connector**
-3. Name: `BlueAlpha MCP`
-4. URL: `https://consumer.mcp.bluealpha.ai/mcp`
+3. Name it: `BlueAlpha MCP`
+4. URL: `https://mcp.bluealpha.ai/mcp`
 5. Click **Connect** and sign in with your BlueAlpha account
 
-That single sign-in wires Claude up to your Google Ads accounts *and* your Meridian MMM models. No keys, no IDs, no config to copy.
+That single sign-in wires Claude up to your Meridian models (and your Google Ads accounts, if you have them). No keys, no IDs, no config files.
 
 Don't have a BlueAlpha account yet? Visit [bluealpha.ai](https://bluealpha.ai) to get one.
 
-## Step 2 — Install the BlueAlpha Marketing Plugin
+## Step 2 — Install the plugin
 
-Pick one path.
+Pick the path that matches the Claude product you're using.
 
-**From the marketplace (recommended):** in Claude, type:
+### Option A — Cowork (drag-and-drop)
+
+1. Go to [github.com/bluealpha-labs/bluealpha-plugins](https://github.com/bluealpha-labs/bluealpha-plugins)
+2. Click **Releases** on the right rail and open the latest release (currently v0.3.0)
+3. Expand **Assets** and click `bluealpha-marketing-plugin.plugin` to download
+4. Drag the downloaded file into an open Cowork session and click **Install** when prompted
+
+That's it. No CLI, no settings menu — one drag.
+
+### Option B — Claude Code (slash commands)
+
+Inside Claude Code, run these two commands:
 
 ```
-/plugin marketplace add bluealpha/bluealpha-plugins
+/plugin marketplace add https://github.com/bluealpha-labs/bluealpha-plugins.git
 /plugin install bluealpha-marketing-plugin
 ```
 
-**From a direct download:** grab the `.plugin` file from the [latest release](https://github.com/bluealpha/bluealpha-plugins/releases/latest) and drag it into Claude. Click **Install** when prompted.
+The first registers the GitHub repo as a marketplace; the second installs the plugin from it. The same plugin contains both the Google Ads skills and the MMM skills — you install once, the right skill triggers based on what you ask.
 
 ## Step 3 — Try it
 
