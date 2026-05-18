@@ -4,7 +4,7 @@ Public marketplace for BlueAlpha's Claude plugins. Built for performance markete
 
 ## Available plugins
 
-- **bluealpha-marketing-plugin** — Paid media strategy and analysis for Google Ads, with MMM-backed incrementality. [Read more →](./plugins/bluealpha-marketing-plugin/README.md)
+- **bluealpha-marketing-plugin** — Paid media strategy and analysis for Google Ads and TikTok Ads, with MMM-backed incrementality. [Read more →](./plugins/bluealpha-marketing-plugin/README.md)
 
 ## Install
 

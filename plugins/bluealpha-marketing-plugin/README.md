@@ -1,6 +1,6 @@
 # BlueAlpha Marketing Plugin
 
-A Claude-powered toolkit for performance marketers and analytics teams. Talk to Claude in plain English and get back account audits, keyword strategies, geo expansion plans, audience reviews, creative refresh ideas, full incrementality test designs, MMM-driven budget reallocations, saturation diagnostics, channel deep-dives, per-channel trust routing, attribution reconciliation, and quarterly scenario plans — all backed by your live Google Ads data and BlueAlpha's Meridian marketing mix model.
+A Claude-powered toolkit for performance marketers and analytics teams. Talk to Claude in plain English and get back account audits, keyword strategies, geo expansion plans, audience reviews, creative refresh ideas, full incrementality test designs, MMM-driven budget reallocations, saturation diagnostics, channel deep-dives, per-channel trust routing, attribution reconciliation, quarterly scenario plans, and TikTok-native creative-fatigue, audience, and geo-holdout workflows — all backed by your live Google Ads + TikTok Ads data and BlueAlpha's Meridian marketing mix model.
 
 No spreadsheets. No SQL. No agency lag.
 
@@ -34,12 +34,24 @@ Foundational analysis:
 - `mmm-launch-timing` — *"if I launch now, when do I see the impact?"* — adstock + saturation timing per channel
 - `mmm-channel-deep-dive` — comprehensive single-channel read with cut/hold/scale/test verdict
 
-Confidence, testing, and planning (new in v0.4):
+Confidence, testing, and planning:
 
 - `mmm-trust-router` — per-channel "Trust MMM / Validate first / Model insufficient" classifier
 - `mmm-test-roadmap` — quarterly incrementality testing calendar from trust-router output
 - `mmm-attribution-reconciler` — MMM channel ROI vs. platform-reported ROAS, with disagreement routing
 - `mmm-scenario-planner` — 3-5 budget scenarios side-by-side with comparison matrix
+
+**TikTok Ads skills (9, new in v0.4.0):**
+
+- `tiktok-auto-optimize` — full TikTok account optimization cycle
+- `tiktok-audience-intelligence` — AUDIENCE-report driven demo/DMA/placement tiering
+- `tiktok-content-to-campaign` — turn content into a TikTok campaign spec
+- `tiktok-creative-fatigue-watchdog` — hook/hold/completion/CTR decay detection
+- `tiktok-creative-refresh` — 5-concept creative brief production
+- `tiktok-full-monty` — orchestrator that runs all 9 TikTok skills in sequence
+- `tiktok-geo-expansion` — DMA-level market scouting and prioritization
+- `tiktok-incrementality-test` — TikTok geo-holdout design and monitoring
+- `tiktok-performance-digest` — weekly/monthly TikTok narrative read
 
 ## What you can ask it to do
 
@@ -68,6 +80,14 @@ Once installed, just talk to Claude. Some prompts to try:
 - *"Build me a quarterly testing roadmap given a $200K test budget."*
 - *"Reconcile what Google Ads is saying vs. what the MMM is saying — where do they disagree?"*
 - *"Compare these three budget scenarios side by side and tell me which one to ship."*
+
+**TikTok Ads:**
+
+- *"Check TikTok creative fatigue on my account — which videos are tired?"*
+- *"Give me the monthly TikTok performance digest."*
+- *"Design a TikTok geo holdout test."*
+- *"Build the full TikTok review and tell me what to fix."*
+- *"Which TikTok DMAs and demos are converting? Where should I expand?"*
 
 The plugin walks you through the answer, asks follow-up questions if it needs context, and produces strategy documents and analyses you can take straight to your team or your weekly review.
 
@@ -105,7 +125,7 @@ Pick the path that matches the Claude product you're using.
 #### Option A — Cowork (drag-and-drop)
 
 1. Go to [github.com/bluealpha-labs/bluealpha-plugins](https://github.com/bluealpha-labs/bluealpha-plugins)
-2. Click Releases on the right rail and open the latest release (currently v0.3.0)
+2. Click Releases on the right rail and open the latest release (currently v0.4.0)
 3. Expand Assets and click `bluealpha-marketing-plugin.plugin` to download
 4. Drag the downloaded file into an open Cowork session and click Install when prompted
 
@@ -124,5 +144,6 @@ The first registers the GitHub repo as a marketplace; the second installs the pl
 
 ## Versioning
 
-- **v0.3.0** (current) — Added 10 MMM skills covering budget reallocation, saturation, model health-check, performance digest, launch timing, channel deep-dive, trust routing, quarterly test roadmaps, MMM-vs-platform attribution reconciliation, and scenario planning.
+- **v0.4.0** (current) — Added 9 TikTok Ads skills: auto-optimize, audience-intelligence, content-to-campaign, creative-fatigue-watchdog, creative-refresh, full-monty, geo-expansion, incrementality-test, and performance-digest. Total skill count: 29.
+- **v0.3.0** — Added 10 MMM skills covering budget reallocation, saturation, model health-check, performance digest, launch timing, channel deep-dive, trust routing, quarterly test roadmaps, MMM-vs-platform attribution reconciliation, and scenario planning.
 - **v0.2.0** — Initial 10 Google Ads skills.

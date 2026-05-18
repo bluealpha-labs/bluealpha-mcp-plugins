@@ -12,10 +12,10 @@
     {
       "name": "bluealpha-marketing-plugin",
       "source": "./plugins/bluealpha-marketing-plugin",
-      "description": "Paid media strategy, analysis, and measurement for Google Ads, powered by BlueAlpha's marketing mix model. 10 skills covering competitive conquest, SEO/paid coverage, creative refresh, audience intelligence, geo expansion, incrementality testing, and full-account audits.",
-      "version": "0.2.0",
+      "description": "Paid media strategy, analysis, and measurement powered by BlueAlpha's unified MCP (Google Ads + TikTok Ads + Meridian MMM). 29 skills covering competitive strategy, SEO/paid bridging, creative refresh, audience intelligence, incrementality testing, geo expansion, budget reallocation, saturation analysis, attribution reconciliation, scenario planning, and full TikTok account workflows.",
+      "version": "0.4.0",
       "category": "marketing",
-      "keywords": ["google-ads", "paid-media", "mmm", "incrementality", "performance-marketing"]
+      "keywords": ["google-ads", "tiktok-ads", "paid-media", "mmm", "incrementality", "performance-marketing"]
     }
   ]
 }
