@@ -1,6 +1,6 @@
-# BlueAlpha Plugins for Claude
+# BlueAlpha Plugins for Claude Performance Marketers
 
-Public marketplace for BlueAlpha's Claude plugins. Built for performance marketers, growth leads, and in-house Google Ads owners.
+Public marketplace for BlueAlpha's Claude plugins. Built for performance marketers, growth leads, and in-house Google Ads, TikTok, Meta, X and LinkedIn owners.
 
 ## Available plugins
 
