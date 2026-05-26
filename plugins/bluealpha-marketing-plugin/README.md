@@ -1,12 +1,12 @@
 # BlueAlpha Marketing Plugin
 
-A Claude-powered toolkit for performance marketers and analytics teams. Talk to Claude in plain English and get back account audits, keyword strategies, geo expansion plans, audience reviews, creative refresh ideas, full incrementality test designs, MMM-driven budget reallocations, saturation diagnostics, channel deep-dives, per-channel trust routing, attribution reconciliation, quarterly scenario plans, and TikTok-native creative-fatigue, audience, and geo-holdout workflows — all backed by your live Google Ads + TikTok Ads data and BlueAlpha's Meridian marketing mix model.
+A Claude-powered toolkit for performance marketers and analytics teams. Talk to Claude in plain English and get back account audits, keyword strategies, geo expansion plans, audience reviews, creative refresh ideas, full incrementality test designs, MMM-driven budget reallocations, saturation diagnostics, channel deep-dives, per-channel trust routing, attribution reconciliation, quarterly scenario plans, TikTok-native creative-fatigue, audience, and geo-holdout workflows, and the complete LinkedIn Ads audit suite — all backed by your live Google Ads + TikTok Ads + LinkedIn Ads data and BlueAlpha's Meridian marketing mix model.
 
 No spreadsheets. No SQL. No agency lag.
 
 ## Who this is for
 
-Performance marketers, growth leads, in-house Google Ads owners, and analytics teams who want a senior media strategist *and* a senior MMM analyst in their corner without paying senior-strategist hourly rates.
+Performance marketers, growth leads, in-house Google Ads / TikTok / LinkedIn owners, and analytics teams who want a senior media strategist *and* a senior MMM analyst in their corner without paying senior-strategist hourly rates.
 
 ## What's inside
 
@@ -41,7 +41,7 @@ Confidence, testing, and planning:
 - `mmm-attribution-reconciler` — MMM channel ROI vs. platform-reported ROAS, with disagreement routing
 - `mmm-scenario-planner` — 3-5 budget scenarios side-by-side with comparison matrix
 
-**TikTok Ads skills (9, new in v0.4.0):**
+**TikTok Ads skills (9):**
 
 - `tiktok-auto-optimize` — full TikTok account optimization cycle
 - `tiktok-audience-intelligence` — AUDIENCE-report driven demo/DMA/placement tiering
@@ -52,6 +52,30 @@ Confidence, testing, and planning:
 - `tiktok-geo-expansion` — DMA-level market scouting and prioritization
 - `tiktok-incrementality-test` — TikTok geo-holdout design and monitoring
 - `tiktok-performance-digest` — weekly/monthly TikTok narrative read
+
+**LinkedIn Ads skills (10, new in v0.5.0):**
+
+Read what's happening:
+
+- `linkedin-auto-optimize` — account health cycle (score, blockers, pacing, structure)
+- `linkedin-performance-digest` — weekly/monthly LinkedIn narrative read
+- `linkedin-demographic-deep-dive` — spend vs intended targeting by seniority / job function / company size / industry
+
+Decide what to do with audiences and bids:
+
+- `linkedin-audience-health-check` — count holds, compound-risk audiences, single-point-of-failure, decay
+- `linkedin-targeting-overlap-finder` — Jaccard-based auction overlap detection between own campaigns
+- `linkedin-frequency-saturation-report` — cap configuration audit + impression-intensity proxy
+- `linkedin-bid-strategy-audit` — cost-type, optimization-target, creative-selection sanity check
+
+Decide what to do with creatives:
+
+- `linkedin-creative-fatigue-watchdog` — objective-aware CTR/engagement decay scoring
+- `linkedin-lead-form-quality-auditor` — Lead Gen Form health, orphan-form cleanup, cost-per-lead
+
+Run the whole audit:
+
+- `linkedin-full-monty` — orchestrator that composes all nine sub-skills into one report
 
 ## What you can ask it to do
 
@@ -89,6 +113,16 @@ Once installed, just talk to Claude. Some prompts to try:
 - *"Build the full TikTok review and tell me what to fix."*
 - *"Which TikTok DMAs and demos are converting? Where should I expand?"*
 
+**LinkedIn Ads:**
+
+- *"Run auto-optimize on my LinkedIn account and tell me what's blocking delivery."*
+- *"Who is actually clicking my LinkedIn ads by job function and seniority?"*
+- *"Find the LinkedIn campaigns on my account that are bidding against each other."*
+- *"Why isn't my LinkedIn Lead Gen campaign delivering? Run the audience health check."*
+- *"Should my LinkedIn campaigns be on OPTIMIZED or ROUND_ROBIN creative selection?"*
+- *"Generate the weekly LinkedIn performance digest."*
+- *"Run the full LinkedIn account audit and give me the top 5 priority actions."*
+
 The plugin walks you through the answer, asks follow-up questions if it needs context, and produces strategy documents and analyses you can take straight to your team or your weekly review.
 
 ## Skill hand-off pattern
@@ -106,6 +140,13 @@ The MMM skills are designed to compose. A typical end-to-end planning cycle:
 
 Each skill stands alone, but the chain is the planning loop.
 
+LinkedIn skills follow a parallel pattern. Recommended cadence:
+
+- **Weekly:** `linkedin-auto-optimize`, `linkedin-performance-digest`
+- **Bi-weekly:** `linkedin-creative-fatigue-watchdog`, `linkedin-audience-health-check`
+- **Monthly:** `linkedin-targeting-overlap-finder`, `linkedin-frequency-saturation-report`, `linkedin-bid-strategy-audit`
+- **Quarterly:** `linkedin-demographic-deep-dive`, `linkedin-lead-form-quality-auditor`, `linkedin-full-monty`
+
 ## Setup
 
 ### Step 1 — Install the BlueAlpha MCP connector
@@ -116,7 +157,7 @@ Each skill stands alone, but the chain is the planning loop.
 4. URL: `https://mcp.bluealpha.ai/mcp`
 5. Click Connect and sign in with your BlueAlpha account
 
-That single sign-in wires Claude up to your Meridian models (and your Google Ads accounts, if you have them). No keys, no IDs, no config files.
+That single sign-in wires Claude up to your Meridian models, your Google Ads accounts, your TikTok Ads accounts, and your LinkedIn Ads accounts (whichever you have). No keys, no IDs, no config files.
 
 ### Step 2 — Install the plugin
 
@@ -125,7 +166,7 @@ Pick the path that matches the Claude product you're using.
 #### Option A — Cowork (drag-and-drop)
 
 1. Go to [github.com/bluealpha-labs/bluealpha-plugins](https://github.com/bluealpha-labs/bluealpha-plugins)
-2. Click Releases on the right rail and open the latest release (currently v0.4.0)
+2. Click Releases on the right rail and open the latest release (currently v0.5.0)
 3. Expand Assets and click `bluealpha-marketing-plugin.plugin` to download
 4. Drag the downloaded file into an open Cowork session and click Install when prompted
 
@@ -140,10 +181,11 @@ Inside Claude Code, run these two commands:
 /plugin install bluealpha-marketing-plugin
 ```
 
-The first registers the GitHub repo as a marketplace; the second installs the plugin from it. The same plugin contains both the Google Ads skills and the MMM skills — you install once, the right skill triggers based on what you ask.
+The first registers the GitHub repo as a marketplace; the second installs the plugin from it. The same plugin contains the Google Ads, MMM, TikTok Ads, and LinkedIn Ads skills — you install once, the right skill triggers based on what you ask.
 
 ## Versioning
 
-- **v0.4.0** (current) — Added 9 TikTok Ads skills: auto-optimize, audience-intelligence, content-to-campaign, creative-fatigue-watchdog, creative-refresh, full-monty, geo-expansion, incrementality-test, and performance-digest. Total skill count: 29.
+- **v0.5.0** (current) — Added 10 LinkedIn Ads skills: auto-optimize, performance-digest, demographic-deep-dive, audience-health-check, targeting-overlap-finder, frequency-saturation-report, bid-strategy-audit, creative-fatigue-watchdog, lead-form-quality-auditor, and full-monty orchestrator. Three of the LinkedIn skills (audience-health-check, frequency-saturation-report, lead-form-quality-auditor) work as configuration audits + indirect signals due to current LinkedIn API constraints — each surfaces the limitation explicitly and produces a manual-validation checklist. Total skill count: 39.
+- **v0.4.0** — Added 9 TikTok Ads skills: auto-optimize, audience-intelligence, content-to-campaign, creative-fatigue-watchdog, creative-refresh, full-monty, geo-expansion, incrementality-test, and performance-digest. Total skill count: 29.
 - **v0.3.0** — Added 10 MMM skills covering budget reallocation, saturation, model health-check, performance digest, launch timing, channel deep-dive, trust routing, quarterly test roadmaps, MMM-vs-platform attribution reconciliation, and scenario planning.
 - **v0.2.0** — Initial 10 Google Ads skills.
