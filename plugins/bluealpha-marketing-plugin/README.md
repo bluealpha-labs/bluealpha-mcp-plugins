@@ -166,7 +166,7 @@ Pick the path that matches the Claude product you're using.
 #### Option A — Cowork (drag-and-drop)
 
 1. Go to [github.com/bluealpha-labs/bluealpha-plugins](https://github.com/bluealpha-labs/bluealpha-plugins)
-2. Click Releases on the right rail and open the latest release (currently v0.5.0)
+2. Click Releases on the right rail and open the latest release (currently v0.5.1)
 3. Expand Assets and click `bluealpha-marketing-plugin.plugin` to download
 4. Drag the downloaded file into an open Cowork session and click Install when prompted
 
@@ -185,7 +185,8 @@ The first registers the GitHub repo as a marketplace; the second installs the pl
 
 ## Versioning
 
-- **v0.5.0** (current) — Added 10 LinkedIn Ads skills: auto-optimize, performance-digest, demographic-deep-dive, audience-health-check, targeting-overlap-finder, frequency-saturation-report, bid-strategy-audit, creative-fatigue-watchdog, lead-form-quality-auditor, and full-monty orchestrator. Three of the LinkedIn skills (audience-health-check, frequency-saturation-report, lead-form-quality-auditor) work as configuration audits + indirect signals due to current LinkedIn API constraints — each surfaces the limitation explicitly and produces a manual-validation checklist. Total skill count: 39.
+- **v0.5.1** (current) — Shortened the plugin manifest description to satisfy the 500-character limit (the v0.5.0 description blocked installation in Claude Cowork). No skill changes. Skill count unchanged: 39.
+- **v0.5.0** — Added 10 LinkedIn Ads skills: auto-optimize, performance-digest, demographic-deep-dive, audience-health-check, targeting-overlap-finder, frequency-saturation-report, bid-strategy-audit, creative-fatigue-watchdog, lead-form-quality-auditor, and full-monty orchestrator. Three of the LinkedIn skills (audience-health-check, frequency-saturation-report, lead-form-quality-auditor) work as configuration audits + indirect signals due to current LinkedIn API constraints — each surfaces the limitation explicitly and produces a manual-validation checklist. Total skill count: 39.
 - **v0.4.0** — Added 9 TikTok Ads skills: auto-optimize, audience-intelligence, content-to-campaign, creative-fatigue-watchdog, creative-refresh, full-monty, geo-expansion, incrementality-test, and performance-digest. Total skill count: 29.
 - **v0.3.0** — Added 10 MMM skills covering budget reallocation, saturation, model health-check, performance digest, launch timing, channel deep-dive, trust routing, quarterly test roadmaps, MMM-vs-platform attribution reconciliation, and scenario planning.
 - **v0.2.0** — Initial 10 Google Ads skills.

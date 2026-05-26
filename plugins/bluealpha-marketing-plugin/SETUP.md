@@ -21,7 +21,7 @@ Pick the path that matches the Claude product you're using.
 ### Option A — Cowork (drag-and-drop)
 
 1. Go to [github.com/bluealpha-labs/bluealpha-plugins](https://github.com/bluealpha-labs/bluealpha-plugins)
-2. Click **Releases** on the right rail and open the latest release (currently v0.5.0)
+2. Click **Releases** on the right rail and open the latest release (currently v0.5.1)
 3. Expand **Assets** and click `bluealpha-marketing-plugin.plugin` to download
 4. Drag the downloaded file into an open Cowork session and click **Install** when prompted
 
