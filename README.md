@@ -1,4 +1,4 @@
-# BlueAlpha Plugins for Claude Performance Marketers
+# BlueAlpha Plugins for Claude Growth Marketers
 
 Turn Claude into a senior paid-media strategist and marketing-mix-model (MMM) analyst. The **BlueAlpha Marketing Plugin** lets you audit ad accounts, reallocate budget, and design incrementality tests across **Google Ads, TikTok Ads, and LinkedIn Ads** — by asking questions in plain English. No spreadsheets, no SQL, no dashboards.
 
