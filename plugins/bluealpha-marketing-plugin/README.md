@@ -195,7 +195,7 @@ Pick the path that matches the Claude product you're using.
 #### Option A — Cowork (drag-and-drop)
 
 1. Go to [github.com/bluealpha-labs/bluealpha-mcp-plugins](https://github.com/bluealpha-labs/bluealpha-mcp-plugins)
-2. Click Releases on the right rail and open the latest release (currently v0.6.1)
+2. Click Releases on the right rail and open the latest release (currently v0.6.2)
 3. Expand Assets and click `bluealpha-marketing-plugin.plugin` to download
 4. Drag the downloaded file into an open Cowork session and click Install when prompted
 
@@ -214,7 +214,8 @@ The first registers the GitHub repo as a marketplace; the second installs the pl
 
 ## Versioning
 
-- **v0.6.1** (current) — Verified the Meta tool bindings live against a real Meta account: the connector exposes Meta under the `facebook_ads_*` family (not `meta_ads_*`), and all 12 Meta skills are bound to it. No skill additions. Total skill count: 51.
+- **v0.6.2** (current) — Trimmed the plugin + marketplace manifest descriptions to a safe margin under the 500-character Cowork install limit (v0.6.1 sat at exactly 500 bytes). No skill changes. Total skill count: 51.
+- **v0.6.1** — Verified the Meta tool bindings live against a real Meta account: the connector exposes Meta under the `facebook_ads_*` family (not `meta_ads_*`), and all 12 Meta skills are bound to it. No skill additions. Total skill count: 51.
 - **v0.6.0** — Added 12 Meta (Facebook/Instagram) Ads skills: auto-optimize, creative-fatigue-watchdog, creative-refresh, audience-intelligence, content-to-campaign, geo-expansion, incrementality-test, performance-digest, full-monty, plus three Meta-specific skills — advantage-plus-audit (ASC / Advantage+), placement-performance (publisher_platform × platform_position), and capi-signal-health (CAPI/dedup/EMQ/AEM/SKAN). Two skills are partially gated by current connector coverage (advantage-plus-audit and capi-signal-health) — each surfaces the limitation and produces a manual-validation checklist. Total skill count: 51.
 - **v0.5.1** — Shortened the plugin manifest description to satisfy the 500-character limit (the v0.5.0 description blocked installation in Claude Cowork). No skill changes. Skill count unchanged: 39.
 - **v0.5.0** — Added 10 LinkedIn Ads skills: auto-optimize, performance-digest, demographic-deep-dive, audience-health-check, targeting-overlap-finder, frequency-saturation-report, bid-strategy-audit, creative-fatigue-watchdog, lead-form-quality-auditor, and full-monty orchestrator. Three of the LinkedIn skills (audience-health-check, frequency-saturation-report, lead-form-quality-auditor) work as configuration audits + indirect signals due to current LinkedIn API constraints — each surfaces the limitation explicitly and produces a manual-validation checklist. Total skill count: 39.
