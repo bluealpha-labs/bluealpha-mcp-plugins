@@ -1,12 +1,12 @@
 # BlueAlpha Marketing Plugin
 
-A Claude-powered toolkit for performance marketers and analytics teams. Talk to Claude in plain English and get back account audits, keyword strategies, geo expansion plans, audience reviews, creative refresh ideas, full incrementality test designs, MMM-driven budget reallocations, saturation diagnostics, channel deep-dives, per-channel trust routing, attribution reconciliation, quarterly scenario plans, TikTok-native creative-fatigue, audience, and geo-holdout workflows, and the complete LinkedIn Ads audit suite — all backed by your live Google Ads + TikTok Ads + LinkedIn Ads data and BlueAlpha's Meridian marketing mix model.
+A Claude-powered toolkit for performance marketers and analytics teams. Talk to Claude in plain English and get back account audits, keyword strategies, geo expansion plans, audience reviews, creative refresh ideas, full incrementality test designs, MMM-driven budget reallocations, saturation diagnostics, channel deep-dives, per-channel trust routing, attribution reconciliation, quarterly scenario plans, TikTok-native creative-fatigue, audience, and geo-holdout workflows, the complete LinkedIn Ads audit suite, and the full Meta (Facebook/Instagram) audit suite — all backed by your live Google Ads + Meta Ads + TikTok Ads + LinkedIn Ads data and BlueAlpha's Meridian marketing mix model.
 
 No spreadsheets. No SQL. No agency lag.
 
 ## Who this is for
 
-Performance marketers, growth leads, in-house Google Ads / TikTok / LinkedIn owners, and analytics teams who want a senior media strategist *and* a senior MMM analyst in their corner without paying senior-strategist hourly rates.
+Performance marketers, growth leads, in-house Google Ads / Meta / TikTok / LinkedIn owners, and analytics teams who want a senior media strategist *and* a senior MMM analyst in their corner without paying senior-strategist hourly rates.
 
 ## What's inside
 
@@ -77,6 +77,26 @@ Run the whole audit:
 
 - `linkedin-full-monty` — orchestrator that composes all nine sub-skills into one report
 
+**Meta Ads skills (12, new in v0.6.0):**
+
+Mirror of the TikTok suite:
+
+- `meta-auto-optimize` — full-account optimization cycle (structure, CBO/ABO, learning-phase, pacing, budget)
+- `meta-creative-fatigue-watchdog` — frequency / thumb-stop / CTR / relevance decay, via the live `creative_fatigue_*` engine
+- `meta-creative-refresh` — winning-DNA audit → 5-concept brief
+- `meta-audience-intelligence` — demo / geo / device + prospecting-vs-retargeting + Advantage+ Audience
+- `meta-content-to-campaign` — content asset → build-ready Meta campaign spec
+- `meta-geo-expansion` — geo tiering, expansion candidates, drain cleanup
+- `meta-incrementality-test` — geo holdout / Conversion Lift design, via the live `incrementality_*` tools
+- `meta-performance-digest` — weekly/monthly Meta narrative read
+- `meta-full-monty` — orchestrator that runs the whole Meta suite in dependency order
+
+Meta-specific (no TikTok/Google analogue):
+
+- `meta-advantage-plus-audit` — ASC / Advantage+ Audience / CBO / Advantage+ Creative; existing-customer harvesting check
+- `meta-placement-performance` — publisher_platform × platform_position; Audience Network waste audit
+- `meta-capi-signal-health` — CAPI/dedup, Event Match Quality, AEM 8-event, attribution, SKAN/iOS — gates trust in every CPA/ROAS
+
 ## What you can ask it to do
 
 Once installed, just talk to Claude. Some prompts to try:
@@ -123,6 +143,15 @@ Once installed, just talk to Claude. Some prompts to try:
 - *"Generate the weekly LinkedIn performance digest."*
 - *"Run the full LinkedIn account audit and give me the top 5 priority actions."*
 
+**Meta Ads (Facebook/Instagram):**
+
+- *"Optimize my Meta account and tell me what to fix first."*
+- *"Can I trust my Meta conversions? Run the CAPI signal health check."*
+- *"Which of my Meta creatives are fatiguing? Check frequency and CTR decay."*
+- *"Break my Meta spend down by placement — is Audience Network wasting money?"*
+- *"Is Advantage+ Shopping actually working, or just harvesting existing customers?"*
+- *"Run the full Meta audit and give me a prioritized action plan."*
+
 The plugin walks you through the answer, asks follow-up questions if it needs context, and produces strategy documents and analyses you can take straight to your team or your weekly review.
 
 ## Skill hand-off pattern
@@ -157,7 +186,7 @@ LinkedIn skills follow a parallel pattern. Recommended cadence:
 4. URL: `https://mcp.bluealpha.ai/mcp`
 5. Click Connect and sign in with your BlueAlpha account
 
-That single sign-in wires Claude up to your Meridian models, your Google Ads accounts, your TikTok Ads accounts, and your LinkedIn Ads accounts (whichever you have). No keys, no IDs, no config files.
+That single sign-in wires Claude up to your Meridian models, your Google Ads accounts, your Meta Ads accounts, your TikTok Ads accounts, and your LinkedIn Ads accounts (whichever you have). No keys, no IDs, no config files.
 
 ### Step 2 — Install the plugin
 
@@ -165,8 +194,8 @@ Pick the path that matches the Claude product you're using.
 
 #### Option A — Cowork (drag-and-drop)
 
-1. Go to [github.com/bluealpha-labs/bluealpha-plugins](https://github.com/bluealpha-labs/bluealpha-plugins)
-2. Click Releases on the right rail and open the latest release (currently v0.5.1)
+1. Go to [github.com/bluealpha-labs/bluealpha-mcp-plugins](https://github.com/bluealpha-labs/bluealpha-mcp-plugins)
+2. Click Releases on the right rail and open the latest release (currently v0.6.1)
 3. Expand Assets and click `bluealpha-marketing-plugin.plugin` to download
 4. Drag the downloaded file into an open Cowork session and click Install when prompted
 
@@ -177,15 +206,17 @@ That's it. No CLI, no settings menu — one drag.
 Inside Claude Code, run these two commands:
 
 ```
-/plugin marketplace add https://github.com/bluealpha-labs/bluealpha-plugins.git
+/plugin marketplace add https://github.com/bluealpha-labs/bluealpha-mcp-plugins.git
 /plugin install bluealpha-marketing-plugin
 ```
 
-The first registers the GitHub repo as a marketplace; the second installs the plugin from it. The same plugin contains the Google Ads, MMM, TikTok Ads, and LinkedIn Ads skills — you install once, the right skill triggers based on what you ask.
+The first registers the GitHub repo as a marketplace; the second installs the plugin from it. The same plugin contains the Google Ads, MMM, TikTok Ads, LinkedIn Ads, and Meta Ads skills — you install once, the right skill triggers based on what you ask.
 
 ## Versioning
 
-- **v0.5.1** (current) — Shortened the plugin manifest description to satisfy the 500-character limit (the v0.5.0 description blocked installation in Claude Cowork). No skill changes. Skill count unchanged: 39.
+- **v0.6.1** (current) — Verified the Meta tool bindings live against a real Meta account: the connector exposes Meta under the `facebook_ads_*` family (not `meta_ads_*`), and all 12 Meta skills are bound to it. No skill additions. Total skill count: 51.
+- **v0.6.0** — Added 12 Meta (Facebook/Instagram) Ads skills: auto-optimize, creative-fatigue-watchdog, creative-refresh, audience-intelligence, content-to-campaign, geo-expansion, incrementality-test, performance-digest, full-monty, plus three Meta-specific skills — advantage-plus-audit (ASC / Advantage+), placement-performance (publisher_platform × platform_position), and capi-signal-health (CAPI/dedup/EMQ/AEM/SKAN). Two skills are partially gated by current connector coverage (advantage-plus-audit and capi-signal-health) — each surfaces the limitation and produces a manual-validation checklist. Total skill count: 51.
+- **v0.5.1** — Shortened the plugin manifest description to satisfy the 500-character limit (the v0.5.0 description blocked installation in Claude Cowork). No skill changes. Skill count unchanged: 39.
 - **v0.5.0** — Added 10 LinkedIn Ads skills: auto-optimize, performance-digest, demographic-deep-dive, audience-health-check, targeting-overlap-finder, frequency-saturation-report, bid-strategy-audit, creative-fatigue-watchdog, lead-form-quality-auditor, and full-monty orchestrator. Three of the LinkedIn skills (audience-health-check, frequency-saturation-report, lead-form-quality-auditor) work as configuration audits + indirect signals due to current LinkedIn API constraints — each surfaces the limitation explicitly and produces a manual-validation checklist. Total skill count: 39.
 - **v0.4.0** — Added 9 TikTok Ads skills: auto-optimize, audience-intelligence, content-to-campaign, creative-fatigue-watchdog, creative-refresh, full-monty, geo-expansion, incrementality-test, and performance-digest. Total skill count: 29.
 - **v0.3.0** — Added 10 MMM skills covering budget reallocation, saturation, model health-check, performance digest, launch timing, channel deep-dive, trust routing, quarterly test roadmaps, MMM-vs-platform attribution reconciliation, and scenario planning.

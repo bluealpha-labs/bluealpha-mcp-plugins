@@ -1,7 +1,7 @@
 {
   "name": "bluealpha-marketing-plugin",
-  "version": "0.5.1",
-  "description": "Paid media strategy, analysis, and measurement via BlueAlpha's unified MCP (Google Ads + TikTok Ads + LinkedIn Ads + Meridian MMM). 39 skills for competitive strategy, creative refresh, audience intelligence, incrementality testing, geo expansion, budget reallocation, saturation analysis, attribution reconciliation, scenario planning, and full TikTok + LinkedIn audit suites — analysis-only, execution routed through the BlueAlpha pipeline. Requires the bluealpha-mcp connector.",
+  "version": "0.6.1",
+  "description": "Paid media strategy, analysis, and measurement via BlueAlpha's unified MCP (Google Ads + Meta Ads + TikTok Ads + LinkedIn Ads + Meridian MMM). 51 skills for competitive strategy, creative refresh, audience intelligence, incrementality testing, geo expansion, budget reallocation, saturation analysis, attribution reconciliation, scenario planning, and full Meta + TikTok + LinkedIn audit suites \u2014 analysis-only, execution routed through the BlueAlpha pipeline. Requires the bluealpha-mcp connector.",
   "author": {
     "name": "BlueAlpha"
   },
@@ -35,6 +35,21 @@
     "linkedin-bid-strategy",
     "linkedin-lead-gen-forms",
     "linkedin-demographic",
-    "bluealpha-mcp"
+    "bluealpha-mcp",
+    "meta-ads",
+    "facebook-ads",
+    "instagram-ads",
+    "advantage-plus",
+    "asc",
+    "capi",
+    "conversions-api",
+    "event-match-quality",
+    "aem",
+    "skan",
+    "meta-placements",
+    "audience-network",
+    "meta-creative-fatigue",
+    "meta-incrementality",
+    "meta-audience"
   ]
 }

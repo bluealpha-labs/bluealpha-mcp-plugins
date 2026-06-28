@@ -11,7 +11,7 @@ This file is for you (the maintainer), not for end users. It explains how to tak
    git add .
    git commit -m "Initial public marketplace with bluealpha-marketing-plugin"
    git branch -M main
-   git remote add origin https://github.com/bluealpha-labs/bluealpha-plugins.git
+   git remote add origin https://github.com/bluealpha-labs/bluealpha-mcp-plugins.git
    git push -u origin main
    ```
 3. (Optional but recommended) On GitHub, go to **Releases → Draft a new release**, attach the `bluealpha-marketing-plugin.plugin` file (in your Cowork outputs folder), and tag it `v0.2.0`. This gives you a permanent download URL for tutorials.
@@ -20,7 +20,7 @@ This file is for you (the maintainer), not for end users. It explains how to tak
 
 **Path A — marketplace install (recommended):**
 ```
-/plugin marketplace add https://github.com/bluealpha-labs/bluealpha-plugins.git
+/plugin marketplace add https://github.com/bluealpha-labs/bluealpha-mcp-plugins.git
 /plugin install bluealpha-marketing-plugin
 ```
 

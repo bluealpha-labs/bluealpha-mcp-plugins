@@ -1,22 +1,26 @@
 # BlueAlpha Plugins for Claude Growth Marketers
 
-Turn Claude into a senior paid-media strategist and marketing-mix-model (MMM) analyst. The **BlueAlpha Marketing Plugin** lets you audit ad accounts, reallocate budget, and design incrementality tests across **Google Ads, TikTok Ads, and LinkedIn Ads** — by asking questions in plain English. No spreadsheets, no SQL, no dashboards.
+Turn Claude into a senior paid-media strategist and marketing-mix-model (MMM) analyst. The **BlueAlpha Marketing Plugin** lets you audit ad accounts, reallocate budget, and design incrementality tests across **Google Ads, Meta Ads (Facebook/Instagram), TikTok Ads, and LinkedIn Ads** — by asking questions in plain English. No spreadsheets, no SQL, no dashboards.
 
 This is BlueAlpha's official public marketplace for Claude plugins. It's free to add, installs in two commands, and works in both **Claude Code** and **Claude Cowork**.
 
 ## What is the BlueAlpha Marketing Plugin?
 
-The BlueAlpha Marketing Plugin is a Claude plugin — a bundle of **39 skills** — built for performance marketers and analytics teams. It connects Claude to your **Google Ads, TikTok Ads, and LinkedIn Ads** accounts plus a **Meridian marketing mix model**, then runs audits, analysis, and media-planning workflows through natural conversation.
+The BlueAlpha Marketing Plugin is a Claude plugin — a bundle of **51 skills** — built for performance marketers and analytics teams. It connects Claude to your **Google Ads, Meta Ads, TikTok Ads, and LinkedIn Ads** accounts plus a **Meridian marketing mix model**, then runs audits, analysis, and media-planning workflows through natural conversation.
 
 It is **analysis-first**: every skill reads your live data and returns recommendations, diagnostics, and plans. Actually executing changes is routed through the BlueAlpha pipeline — the plugin does not make unsupervised edits to your ad accounts.
 
 ## What can it do?
 
-The plugin covers four areas of paid-media work.
+The plugin covers five areas of paid-media work.
 
 ### Google Ads optimization (10 skills)
 
 Full-account audits, audience analysis and targeting refinement, creative-fatigue detection with ad-copy generation, competitor conquest campaigns, auction-share defense, SEO-and-paid coverage-gap analysis, new-market geo expansion, and geo-holdout incrementality test design.
+
+### Meta Ads management (12 skills)
+
+Full Meta (Facebook/Instagram) account optimization, CAPI/signal-health trust gating, ad-level creative-fatigue scoring, creative-brief production, audience intelligence (demo/geo/device + Advantage+ Audience), placement breakdown (publisher_platform × platform_position, Audience Network waste audit), Advantage+ suite auditing (ASC/CBO/creative), geo expansion, geo-holdout incrementality testing, content-to-campaign specs, weekly/monthly performance digests, and a full-account orchestrator.
 
 ### TikTok Ads management (9 skills)
 
@@ -34,7 +38,7 @@ Budget-reallocation simulation with credible intervals, saturation and diminishi
 
 ## Who is it for?
 
-Performance marketers, growth leads, paid-media managers, in-house Google Ads / TikTok / LinkedIn owners, and marketing analytics teams who want senior media-strategist and MMM-analyst judgment on demand — without senior-strategist hourly rates or agency lag.
+Performance marketers, growth leads, paid-media managers, in-house Google Ads / Meta / TikTok / LinkedIn owners, and marketing analytics teams who want senior media-strategist and MMM-analyst judgment on demand — without senior-strategist hourly rates or agency lag.
 
 ## Example questions you can ask
 
@@ -45,6 +49,8 @@ Once installed, you talk to Claude in plain English. For example:
 - *"If I move $50K/week from Meta to YouTube, what does the MMM say happens to revenue?"*
 - *"Run the full LinkedIn account audit and give me the top 5 priority actions."*
 - *"Check TikTok creative fatigue — which videos are tired?"*
+- *"Optimize my Meta account and tell me whether Advantage+ is helping or leaking spend."*
+- *"Can I trust my Meta conversions? Run the CAPI signal-health check."*
 - *"Design a geo holdout test to prove my brand campaign is incremental."*
 - *"Reconcile what Google Ads is reporting vs. what the MMM says — where do they disagree?"*
 
@@ -59,7 +65,7 @@ The plugin ships **skills** — structured, repeatable workflows Claude follows.
 In **Claude Code**, type:
 
 ```
-/plugin marketplace add https://github.com/bluealpha-labs/bluealpha-plugins.git
+/plugin marketplace add https://github.com/bluealpha-labs/bluealpha-mcp-plugins.git
 /plugin install bluealpha-marketing-plugin
 ```
 
@@ -67,22 +73,22 @@ The first time you use a skill, Claude prompts you to connect your BlueAlpha acc
 
 ### Prefer a file install (Claude Cowork)?
 
-Download the single `.plugin` file from the [latest release](https://github.com/bluealpha-labs/bluealpha-plugins/releases/latest) and drag it into a Cowork session. Click **Install** when prompted.
+Download the single `.plugin` file from the [latest release](https://github.com/bluealpha-labs/bluealpha-mcp-plugins/releases/latest) and drag it into a Cowork session. Click **Install** when prompted.
 
 ## What data does it connect to?
 
-A BlueAlpha account and the BlueAlpha MCP connector. Through that one connection, the plugin reads whichever of these you have connected: **Google Ads**, **TikTok Ads**, **LinkedIn Ads**, and your **Meridian marketing mix model**. Don't have a BlueAlpha account yet? Visit [bluealpha.ai](https://bluealpha.ai).
+A BlueAlpha account and the BlueAlpha MCP connector. Through that one connection, the plugin reads whichever of these you have connected: **Google Ads**, **Meta Ads**, **TikTok Ads**, **LinkedIn Ads**, and your **Meridian marketing mix model**. Don't have a BlueAlpha account yet? Visit [bluealpha.ai](https://bluealpha.ai).
 
 ## Frequently asked questions
 
 **What is a Claude plugin?**
-A Claude plugin is a packaged set of skills (reusable, structured workflows) plus connectors that extend what Claude can do. The BlueAlpha Marketing Plugin adds 39 paid-media and MMM skills to Claude.
+A Claude plugin is a packaged set of skills (reusable, structured workflows) plus connectors that extend what Claude can do. The BlueAlpha Marketing Plugin adds 51 paid-media and MMM skills to Claude.
 
 **Does it change my ad campaigns automatically?**
 No. The plugin is analysis-only. It reads your data and returns recommendations; any execution is routed through the BlueAlpha pipeline, not performed directly by Claude.
 
 **Which ad platforms are supported?**
-Google Ads, TikTok Ads, and LinkedIn Ads — plus Meridian-based marketing mix modeling (MMM) and geo-holdout incrementality testing.
+Google Ads, Meta Ads (Facebook/Instagram), TikTok Ads, and LinkedIn Ads — plus Meridian-based marketing mix modeling (MMM) and geo-holdout incrementality testing.
 
 **Do I need to know SQL or build dashboards?**
 No. You ask questions in plain English; the plugin pulls the live data and analyzes it for you.
@@ -100,7 +106,7 @@ A marketing mix model is a statistical model that estimates how each marketing c
 
 | Plugin | What it does | Skills |
 | --- | --- | --- |
-| **bluealpha-marketing-plugin** | Paid media strategy, analysis, and measurement for Google Ads, TikTok Ads, and LinkedIn Ads, with Meridian MMM and incrementality testing. [Read more →](./plugins/bluealpha-marketing-plugin/README.md) | 39 |
+| **bluealpha-marketing-plugin** | Paid media strategy, analysis, and measurement for Google Ads, Meta Ads, TikTok Ads, and LinkedIn Ads, with Meridian MMM and incrementality testing. [Read more →](./plugins/bluealpha-marketing-plugin/README.md) | 51 |
 
 ## Support
 

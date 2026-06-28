@@ -5,17 +5,17 @@
     "url": "https://bluealpha.ai"
   },
   "metadata": {
-    "description": "BlueAlpha's public Claude plugins for performance marketers — Google Ads strategy, MMM-backed analysis, and incrementality testing.",
+    "description": "BlueAlpha's public Claude plugins for performance marketers — Google Ads, Meta Ads, TikTok Ads, and LinkedIn Ads strategy, MMM-backed analysis, and incrementality testing.",
     "version": "1.0.0"
   },
   "plugins": [
     {
       "name": "bluealpha-marketing-plugin",
       "source": "./plugins/bluealpha-marketing-plugin",
-      "description": "Paid media strategy, analysis, and measurement powered by BlueAlpha's unified MCP (Google Ads + TikTok Ads + LinkedIn Ads + Meridian MMM). 39 skills covering competitive strategy, SEO/paid bridging, creative refresh, audience intelligence, incrementality testing, geo expansion, budget reallocation, saturation analysis, attribution reconciliation, scenario planning, full TikTok account workflows, and the complete LinkedIn audit suite.",
-      "version": "0.5.1",
+      "description": "Paid media strategy, analysis, and measurement powered by BlueAlpha's unified MCP (Google Ads + Meta Ads + TikTok Ads + LinkedIn Ads + Meridian MMM). 51 skills covering competitive strategy, SEO/paid bridging, creative refresh, audience intelligence, incrementality testing, geo expansion, budget reallocation, saturation analysis, attribution reconciliation, scenario planning, full TikTok account workflows, the complete LinkedIn audit suite, and the full Meta (Facebook/Instagram) audit suite.",
+      "version": "0.6.1",
       "category": "marketing",
-      "keywords": ["google-ads", "tiktok-ads", "linkedin-ads", "paid-media", "mmm", "incrementality", "performance-marketing"]
+      "keywords": ["google-ads", "meta-ads", "facebook-ads", "instagram-ads", "tiktok-ads", "linkedin-ads", "paid-media", "mmm", "incrementality", "performance-marketing"]
     }
   ]
 }
