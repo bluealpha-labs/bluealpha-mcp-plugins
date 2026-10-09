@@ -92,6 +92,15 @@ Rules the tool enforces, and the ones it leaves to you:
 - **`frequency`** = impressions ÷ uniques (verified: 4,228,398 ÷ 2,483,104 = 1.70).
 - **`conversion_purchases_value` can be 0** when the advertiser sends no values. Then ROAS is unavailable; never
   report a ROAS of 0.
+- **Video metrics are counts, not rates** (verified). `video_views` (2 seconds or a swipe), `video_views_15s`,
+  `quartile_1`, `quartile_2`, `quartile_3` and `view_completion` count views reaching each point.
+  - Divide by `video_views` for the funnel: 15,452 views, then 9,705, 3,633 and 2,213 at the quartiles, and 1,541
+    completions, is a 10% completion rate.
+  - Image ads report 0 for all of them. Judge images on swipe rate and `avg_view_time_seconds`, which every ad has.
+- **Reach per ad works:** `breakdown: "ad"` with `granularity: "TOTAL"` returns `frequency` and `uniques` for each ad.
+- **DAY series skip days with no delivery** (`omit_empty` is true by default), so a series can have gaps. For a
+  before-and-after comparison, two TOTAL reads are smaller and exact. Keep DAY series for the few ads whose trend
+  shape matters.
 
 ## What's live: `delivery_status`, not `status`
 

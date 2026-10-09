@@ -42,6 +42,14 @@ access, following "Applying changes" in the tool reference (Phase 7).
    ```
    If a listing comes back with `complete: false`, say so, and say which campaigns were read in full.
 
+   Then read what changed recently on each live campaign and ad squad. These calls are small; batch them:
+   ```
+   execute(tool_id="snapchat_ads.get_snapchat_change_history", arguments={entity_id: <id>,
+     entity_type: "ad_squad", limit: 10})
+   ```
+   Note each one's latest budget, bid, bid strategy, targeting or status change, and its date (`event_at`). An ad
+   squad changed in the last 7 days hasn't settled: its windows mix the old and new settings.
+
 2. **Find what's actually live.**
    - `status: ACTIVE` only means not paused.
    - An entity delivers only when its `delivery_status` is `["VALID"]`.
@@ -161,8 +169,9 @@ access, following "Applying changes" in the tool reference (Phase 7).
 5. **Size the moves:**
    - **Keep each change at or under 20% a cycle.** Snapchat's write guardrails warn above 20%, and big changes can
      disturb delivery.
-   - **Leave recently changed ad squads alone.** Don't touch one launched or changed in the last 7 days;
-     `snapchat-change-impact-review` shows what changed.
+   - **Leave recently changed ad squads alone.** Don't touch one launched or changed in the last 7 days (the
+     Phase 2 change history). Say what changed and when, and recheck after it settles. `snapchat-change-impact-review`
+     goes deeper.
    - **Keep the account's total flat** unless the user wants to scale.
    - **Respect Smart Budgets.** In a Smart Budgets campaign, move the campaign's budget, not an ad squad's.
 

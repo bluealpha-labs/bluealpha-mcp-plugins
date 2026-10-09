@@ -103,6 +103,9 @@ Analysis-first. With Snapchat write access, a skill can also apply pause, budget
 one confirmed change at a time. See `SNAPCHAT_SKILLS.md`.
 
 - `snapchat-auto-optimize`: full Snapchat account cycle (delivery status, objective vs optimization goal, pacing, goal-matched budget reallocation, settings audit)
+- `snapchat-performance-digest`: weekly/monthly Snapchat narrative read, results reported per goal
+- `snapchat-creative-fatigue-watchdog`: swipe-rate, completion and frequency decay per ad; refresh queue
+- `snapchat-creative-refresh`: winning-creative audit, then a 5-concept brief for full-screen 9:16 Snap Ads
 
 ## What you can ask it to do
 
