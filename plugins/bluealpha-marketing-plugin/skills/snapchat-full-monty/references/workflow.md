@@ -21,8 +21,8 @@ is for onboarding, quarterly reviews, renewals and "what's really going on".
 5. snapchat-creative-fatigue-watchdog
 6. snapchat-audience-intelligence
 7. snapchat-geo-expansion
-8. snapchat-dynamic-ads-audit        (only if the organization has catalogs)
-9. snapchat-lead-gen-auditor         (only if the account has lead forms)
+8. snapchat-ad-review-auditor        (rejected and stuck ads, creative off Snap's specs)
+9. snapchat-dayparting-analysis      (results by hour of day and day of week)
 10. snapchat-creative-refresh        (only if fatigue calls for it)
 11. snapchat-incrementality-test     (design only, when a trigger applies)
 ```
@@ -34,8 +34,8 @@ The orchestrator composes, deduplicates and prioritizes; it doesn't redo work.
 
 ## Phase 1: Setup
 
-1. **The account:** `list_snapchat_ad_accounts` if it isn't known (it also gives the `organization_id`), then
-   `get_snapchat_ad_account` for the timezone and currency. Confirm the account with the user.
+1. **The account:** `list_snapchat_ad_accounts` if it isn't known, then `get_snapchat_ad_account` for the timezone
+   and currency. Confirm the account with the user.
 2. **The period:**
    - the last 30 days against the 30 before;
    - a quarterly review: 90 against 90;
@@ -43,14 +43,7 @@ The orchestrator composes, deduplicates and prioritizes; it doesn't redo work.
    Results for the last day or two may still be processing; carry the response's `notes` into the report.
 3. **The live structure:** campaigns with `status: "ACTIVE"`, then ad squads and ads per campaign. Note each ad
    squad's `optimization_goal` and every `delivery_status`.
-4. **Which conditional phases apply,** batched:
-   ```
-   execute(calls=[
-     {tool_id: "snapchat_ads.get_snapchat_catalogs", arguments: {organization_id}},
-     {tool_id: "snapchat_ads.get_snapchat_lead_gen_forms", arguments: {ad_account_id}}
-   ])
-   ```
-5. **Other engines:** `search` for "MMM channel ROI", "creative fatigue scores" and "geo holdout test". Note which
+4. **Other engines:** `search` for "MMM channel ROI", "creative fatigue scores" and "geo holdout test". Note which
    exist for Snapchat; each phase uses them when they do.
 
 ## Phase 2: Signal health gate
@@ -91,19 +84,19 @@ weekly spend on fatigued ads triggers Phase 10.
 Run `snapchat-audience-intelligence`. Capture:
 - the demographic tiers;
 - interest affinity;
-- audience segment health;
 - the targeting map, including exclusions.
 
 ## Phase 8: Geo
 
-Run `snapchat-geo-expansion`. Capture the geo tiers, labelled as results or as the swipe proxy, and the expansion
+Run `snapchat-geo-expansion`. Capture the geo tiers, labeled as results or as the swipe proxy, and the expansion
 candidates with their targeting ids.
 
-## Phase 9: Catalog and lead ads (conditional)
+## Phase 9: Ad review and timing
 
-- **Catalogs found in Phase 1:** run `snapchat-dynamic-ads-audit`.
-- **Lead forms found:** run `snapchat-lead-gen-auditor`.
-- **Neither:** one line each: not used by this account.
+- **Run `snapchat-ad-review-auditor`.** A live ad squad with no approved ad goes in the executive summary, and
+  Snap's rejection reasons become Ads Manager items in the action plan.
+- **Run `snapchat-dayparting-analysis`** on the live ad squads with enough results. Capture the hourly profile
+  and any schedule candidate; a schedule needs discussion.
 
 ## Phase 10: Creative refresh (conditional)
 
@@ -141,7 +134,7 @@ S4 WHAT CHANGED (change-impact-review)
 S5 CREATIVE (creative-fatigue-watchdog, and the refresh brief if run)
 S6 AUDIENCE (audience-intelligence)
 S7 GEOGRAPHY (geo-expansion)
-S8 CATALOG AND LEAD ADS (if run)
+S8 AD REVIEW AND TIMING (ad-review-auditor, dayparting-analysis)
 S9 INCREMENTALITY (test design and MMM cross-checks)
 APPENDIX: per-campaign and per-ad-squad tables, and the full action plan
 ```
@@ -153,8 +146,8 @@ APPENDIX: per-campaign and per-ad-squad tables, and the full action plan
 - **Tier by risk,** as `snapchat-auto-optimize` does:
   - **Low:** pause clear failures, renames;
   - **Medium:** budget moves up to 20%, loosening a throttling bid, reverting a change that hurt;
-  - **Needs discussion:** goal or objective changes, Smart Budgets, targeting, geo expansion, budget moves over 20%,
-    test launches.
+  - **Needs discussion:** goal or objective changes, Smart Budgets, targeting, ad schedules, geo expansion, budget
+    moves over 20%, test launches.
 - **Mark each item** as one the skill can apply (pause, budget, bid, rename) or one for Ads Manager.
 
 ## Phase 14: Applying (on request)
@@ -167,12 +160,12 @@ Only when the user asks, after the report. Follow "Applying changes" in the tool
 ## Phase 15: Next cycle
 
 - **Weekly:** `snapchat-performance-digest`, `snapchat-creative-fatigue-watchdog`.
-- **Every two weeks:** `snapchat-auto-optimize` (weekly above $25K a month on Snapchat).
-- **Monthly:** `snapchat-change-impact-review`, `snapchat-audience-intelligence`, `snapchat-geo-expansion`, and
-  `snapchat-dynamic-ads-audit` or `snapchat-lead-gen-auditor` where they apply.
+- **Every two weeks:** `snapchat-auto-optimize` (weekly above $25K a month on Snapchat, monthly under $5K).
+- **Monthly:** `snapchat-change-impact-review`, `snapchat-audience-intelligence`, `snapchat-geo-expansion`,
+  `snapchat-dayparting-analysis`.
 - **Quarterly:** this full monty.
-- **As needed:** `snapchat-pixel-signal-health` (whenever tracking changes or trust drops), `snapchat-creative-refresh`,
-  `snapchat-incrementality-test`.
+- **As needed:** `snapchat-pixel-signal-health` (whenever tracking changes or trust drops), `snapchat-ad-review-auditor`
+  (after new ads go up), `snapchat-creative-refresh`, `snapchat-incrementality-test`.
 
 Offer the `schedule` skill for the weekly pair.
 

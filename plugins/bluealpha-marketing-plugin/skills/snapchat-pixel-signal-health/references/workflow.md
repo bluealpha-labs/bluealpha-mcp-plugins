@@ -30,8 +30,6 @@ read, so they become a checklist in Phase 4.
      (`mobile_app_id`), `skad_network_status` and `app_optimization_type`;
    - each ad squad's `skadnetwork_properties.status` says whether it's enrolled in SKAdNetwork.
    An iOS app campaign that isn't enrolled is a question for the user: intended, or a gap?
-4. **Catalogs,** when the account runs dynamic ads: each catalog's `event_sources` should include the pixel or app
-   (`snapchat-dynamic-ads-audit` covers the rest).
 
 ## Phase 2: Symptoms in the numbers
 
@@ -80,7 +78,7 @@ read, so they become a checklist in Phase 4.
   Otherwise, ask for the backend count (orders, sign-ups, the MMP's purchases) for the same days.
 - **Snap well above the backend:** double counting, or view-through credit. Compare the backend with the swipe-only
   figures before calling it double counting.
-- **Snap well below:** events missing, or not matched to Snapchat users (Phase 4, items 2 to 5).
+- **Snap well below:** events missing, or not matched to Snapchat users (Phase 4, items 1, 2, 4 and 5).
 
 ## Phase 4: The Events Manager checklist
 

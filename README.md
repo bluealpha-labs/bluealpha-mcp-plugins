@@ -32,7 +32,7 @@ LinkedIn account health checks, audience-health and targeting-overlap analysis, 
 
 ### Snapchat Ads management (12 skills)
 
-Snapchat account optimization (delivery status, goal-matched budget reallocation, settings), pixel and Conversions API signal-health trust gating with the view-through share, swipe-rate and completion creative-fatigue scoring, creative-brief production for full-screen vertical Snap Ads, audience intelligence (age, gender, OS, Snap Lifestyle Categories, audience segments), region and DMA geo expansion, geo-holdout incrementality testing, change-history impact reviews, catalog and dynamic ad audits, lead form auditing, weekly/monthly performance digests, and a full-account orchestrator. With Snapchat write access, the skills can also apply pause, budget, bid and rename changes when you ask.
+Snapchat account optimization (delivery status, goal-matched budget reallocation, settings), pixel and Conversions API signal-health trust gating with the view-through share, swipe-rate and completion creative-fatigue scoring, creative-brief production for full-screen vertical Snap Ads, audience intelligence (age, gender, OS, Snap Lifestyle Categories, each ad squad's targeting), region and DMA geo expansion, geo-holdout incrementality testing, change-history impact reviews, hour-of-day and day-of-week dayparting, ad review and creative spec audits, weekly/monthly performance digests, and a full-account orchestrator. With Snapchat write access, the skills can also apply pause, budget, bid and rename changes when you ask.
 
 ### Marketing mix modeling & incrementality (10 skills)
 

@@ -176,7 +176,7 @@ Once installed, just talk to Claude. Some prompts to try:
 - *"Can I trust my Snapchat conversions? How much comes from view-through?"*
 - *"What changed in my Snapchat account last month, and did it help?"*
 - *"Which Snapchat ads are tired? Check swipe rate and frequency."*
-- *"Audit my Snapchat lead forms. Are the leads going anywhere?"*
+- *"When do my Snapchat ads get the cheapest results, by hour and by day?"*
 - *"Run the full Snapchat audit and give me a prioritized action plan."*
 
 The plugin walks you through the answer, asks follow-up questions if it needs context, and produces strategy documents and analyses you can take straight to your team or your weekly review.
@@ -206,10 +206,10 @@ LinkedIn skills follow a parallel pattern. Recommended cadence:
 Snapchat skills, recommended cadence:
 
 - **Weekly:** `snapchat-performance-digest`, `snapchat-creative-fatigue-watchdog`
-- **Bi-weekly:** `snapchat-auto-optimize` (weekly above $25K a month on Snapchat)
-- **Monthly:** `snapchat-change-impact-review`, `snapchat-audience-intelligence`, `snapchat-geo-expansion`, and `snapchat-dynamic-ads-audit` or `snapchat-lead-gen-auditor` where they apply
+- **Bi-weekly:** `snapchat-auto-optimize` (weekly above $25K a month on Snapchat, monthly under $5K)
+- **Monthly:** `snapchat-change-impact-review`, `snapchat-audience-intelligence`, `snapchat-geo-expansion`, `snapchat-dayparting-analysis`
 - **Quarterly:** `snapchat-full-monty`
-- **As needed:** `snapchat-pixel-signal-health` (whenever tracking changes), `snapchat-creative-refresh`, `snapchat-incrementality-test`
+- **As needed:** `snapchat-pixel-signal-health` (whenever tracking changes), `snapchat-ad-review-auditor` (after new ads go up), `snapchat-creative-refresh`, `snapchat-incrementality-test`
 
 ## Setup
 
@@ -249,7 +249,7 @@ The first registers the GitHub repo as a marketplace; the second installs the pl
 
 ## Versioning
 
-- **v0.7.0** (current): Added 12 Snapchat Ads skills: auto-optimize, performance-digest, creative-fatigue-watchdog, creative-refresh, audience-intelligence, geo-expansion, incrementality-test, full-monty, plus four Snapchat-specific skills: change-impact-review (before/after verdicts from Snapchat's change history), dynamic-ads-audit (catalogs, feeds, product sets, dynamic ads), lead-gen-auditor (lead forms and webhooks) and pixel-signal-health (pixel and app setup, view-through share, Events Manager checklist). Analysis-first: with Snapchat write access, a skill can apply pause, budget, bid and rename changes on request, one confirmed change at a time, and never deletes, creates or turns anything on. Total skill count: 63.
+- **v0.7.0** (current): Added 12 Snapchat Ads skills: auto-optimize, performance-digest, creative-fatigue-watchdog, creative-refresh, audience-intelligence, geo-expansion, incrementality-test, full-monty, plus four Snapchat-specific skills: change-impact-review (before/after verdicts from Snapchat's change history), dayparting-analysis (results by hour of day and day of week, and whether an ad schedule would help), ad-review-auditor (rejected and stuck ads with Snap's reasons, and creative against Snap's specs) and pixel-signal-health (pixel and app setup, view-through share, Events Manager checklist). Analysis-first: with Snapchat write access, a skill can apply pause, budget, bid and rename changes on request, one confirmed change at a time, and never deletes, creates or turns anything on. Total skill count: 63.
 - **v0.6.2** — Trimmed the plugin + marketplace manifest descriptions to a safe margin under the 500-character Cowork install limit (v0.6.1 sat at exactly 500 bytes). No skill changes. Total skill count: 51.
 - **v0.6.1** — Verified the Meta tool bindings live against a real Meta account: the connector exposes Meta under the `facebook_ads_*` family (not `meta_ads_*`), and all 12 Meta skills are bound to it. No skill additions. Total skill count: 51.
 - **v0.6.0** — Added 12 Meta (Facebook/Instagram) Ads skills: auto-optimize, creative-fatigue-watchdog, creative-refresh, audience-intelligence, content-to-campaign, geo-expansion, incrementality-test, performance-digest, full-monty, plus three Meta-specific skills — advantage-plus-audit (ASC / Advantage+), placement-performance (publisher_platform × platform_position), and capi-signal-health (CAPI/dedup/EMQ/AEM/SKAN). Two skills are partially gated by current connector coverage (advantage-plus-audit and capi-signal-health) — each surfaces the limitation and produces a manual-validation checklist. Total skill count: 51.
