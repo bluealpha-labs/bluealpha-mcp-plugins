@@ -1,12 +1,12 @@
 # BlueAlpha Marketing Plugin
 
-A Claude-powered toolkit for performance marketers and analytics teams. Talk to Claude in plain English and get back account audits, keyword strategies, geo expansion plans, audience reviews, creative refresh ideas, full incrementality test designs, MMM-driven budget reallocations, saturation diagnostics, channel deep-dives, per-channel trust routing, attribution reconciliation, quarterly scenario plans, TikTok-native creative-fatigue, audience, and geo-holdout workflows, the complete LinkedIn Ads audit suite, and the full Meta (Facebook/Instagram) audit suite — all backed by your live Google Ads + Meta Ads + TikTok Ads + LinkedIn Ads data and BlueAlpha's Meridian marketing mix model.
+A Claude-powered toolkit for performance marketers and analytics teams. Talk to Claude in plain English and get back account audits, keyword strategies, geo expansion plans, audience reviews, creative refresh ideas, full incrementality test designs, MMM-driven budget reallocations, saturation diagnostics, channel deep-dives, per-channel trust routing, attribution reconciliation, quarterly scenario plans, TikTok-native creative-fatigue, audience, and geo-holdout workflows, the complete LinkedIn Ads audit suite, the full Meta (Facebook/Instagram) audit suite, and the full Snapchat Ads suite — all backed by your live Google Ads + Meta Ads + TikTok Ads + LinkedIn Ads + Snapchat Ads data and BlueAlpha's Meridian marketing mix model.
 
 No spreadsheets. No SQL. No agency lag.
 
 ## Who this is for
 
-Performance marketers, growth leads, in-house Google Ads / Meta / TikTok / LinkedIn owners, and analytics teams who want a senior media strategist *and* a senior MMM analyst in their corner without paying senior-strategist hourly rates.
+Performance marketers, growth leads, in-house Google Ads / Meta / TikTok / LinkedIn / Snapchat owners, and analytics teams who want a senior media strategist *and* a senior MMM analyst in their corner without paying senior-strategist hourly rates.
 
 ## What's inside
 
@@ -97,7 +97,7 @@ Meta-specific (no TikTok/Google analogue):
 - `meta-placement-performance` — publisher_platform × platform_position; Audience Network waste audit
 - `meta-capi-signal-health` — CAPI/dedup, Event Match Quality, AEM 8-event, attribution, SKAN/iOS — gates trust in every CPA/ROAS
 
-**Snapchat Ads skills (new in v0.7.0):**
+**Snapchat Ads skills (12, new in v0.7.0):**
 
 Analysis-first. With Snapchat write access, a skill can also apply pause, budget, bid and rename changes when you ask,
 one confirmed change at a time. See `SNAPCHAT_SKILLS.md`.
@@ -112,6 +112,8 @@ one confirmed change at a time. See `SNAPCHAT_SKILLS.md`.
 - `snapchat-change-impact-review`: before/after verdict on each budget, bid, targeting, status or creative change, from Snapchat's change history
 - `snapchat-dayparting-analysis`: spend, cost per result and swipe rate by hour of day and day of week, credited to the hour of the impression; recommends an ad schedule only when a block of hours is consistently worse
 - `snapchat-ad-review-auditor`: rejected and stuck ads with Snap's reasons and fixes (including the housing, credit and employment rules), ad squads with no approved ad, and live creative and media against Snap's specs
+- `snapchat-pixel-signal-health`: pixel and app setup, results cliffs, view-through share, Events Manager checklist; gates trust in every cost per result
+- `snapchat-full-monty`: orchestrator that runs the whole Snapchat suite in dependency order, with one risk-tiered action plan
 
 ## What you can ask it to do
 
@@ -168,6 +170,15 @@ Once installed, just talk to Claude. Some prompts to try:
 - *"Is Advantage+ Shopping actually working, or just harvesting existing customers?"*
 - *"Run the full Meta audit and give me a prioritized action plan."*
 
+**Snapchat Ads:**
+
+- *"Optimize my Snapchat account and tell me what to fix first."*
+- *"Can I trust my Snapchat conversions? How much comes from view-through?"*
+- *"What changed in my Snapchat account last month, and did it help?"*
+- *"Which Snapchat ads are tired? Check swipe rate and frequency."*
+- *"Audit my Snapchat lead forms. Are the leads going anywhere?"*
+- *"Run the full Snapchat audit and give me a prioritized action plan."*
+
 The plugin walks you through the answer, asks follow-up questions if it needs context, and produces strategy documents and analyses you can take straight to your team or your weekly review.
 
 ## Skill hand-off pattern
@@ -192,6 +203,14 @@ LinkedIn skills follow a parallel pattern. Recommended cadence:
 - **Monthly:** `linkedin-targeting-overlap-finder`, `linkedin-frequency-saturation-report`, `linkedin-bid-strategy-audit`
 - **Quarterly:** `linkedin-demographic-deep-dive`, `linkedin-lead-form-quality-auditor`, `linkedin-full-monty`
 
+Snapchat skills, recommended cadence:
+
+- **Weekly:** `snapchat-performance-digest`, `snapchat-creative-fatigue-watchdog`
+- **Bi-weekly:** `snapchat-auto-optimize` (weekly above $25K a month on Snapchat)
+- **Monthly:** `snapchat-change-impact-review`, `snapchat-audience-intelligence`, `snapchat-geo-expansion`, and `snapchat-dynamic-ads-audit` or `snapchat-lead-gen-auditor` where they apply
+- **Quarterly:** `snapchat-full-monty`
+- **As needed:** `snapchat-pixel-signal-health` (whenever tracking changes), `snapchat-creative-refresh`, `snapchat-incrementality-test`
+
 ## Setup
 
 ### Step 1 — Install the BlueAlpha MCP connector
@@ -202,7 +221,7 @@ LinkedIn skills follow a parallel pattern. Recommended cadence:
 4. URL: `https://mcp.bluealpha.ai/mcp`
 5. Click Connect and sign in with your BlueAlpha account
 
-That single sign-in wires Claude up to your Meridian models, your Google Ads accounts, your Meta Ads accounts, your TikTok Ads accounts, and your LinkedIn Ads accounts (whichever you have). No keys, no IDs, no config files.
+That single sign-in wires Claude up to your Meridian models, your Google Ads accounts, your Meta Ads accounts, your TikTok Ads accounts, your LinkedIn Ads accounts, and your Snapchat Ads accounts (whichever you have). No keys, no IDs, no config files.
 
 ### Step 2 — Install the plugin
 
@@ -211,7 +230,7 @@ Pick the path that matches the Claude product you're using.
 #### Option A — Cowork (drag-and-drop)
 
 1. Go to [github.com/bluealpha-labs/bluealpha-mcp-plugins](https://github.com/bluealpha-labs/bluealpha-mcp-plugins)
-2. Click Releases on the right rail and open the latest release (currently v0.6.2)
+2. Click Releases on the right rail and open the latest release (currently v0.7.0)
 3. Expand Assets and click `bluealpha-marketing-plugin.plugin` to download
 4. Drag the downloaded file into an open Cowork session and click Install when prompted
 
@@ -226,11 +245,12 @@ Inside Claude Code, run these two commands:
 /plugin install bluealpha-marketing-plugin
 ```
 
-The first registers the GitHub repo as a marketplace; the second installs the plugin from it. The same plugin contains the Google Ads, MMM, TikTok Ads, LinkedIn Ads, and Meta Ads skills — you install once, the right skill triggers based on what you ask.
+The first registers the GitHub repo as a marketplace; the second installs the plugin from it. The same plugin contains the Google Ads, MMM, TikTok Ads, LinkedIn Ads, Meta Ads, and Snapchat Ads skills — you install once, the right skill triggers based on what you ask.
 
 ## Versioning
 
-- **v0.6.2** (current) — Trimmed the plugin + marketplace manifest descriptions to a safe margin under the 500-character Cowork install limit (v0.6.1 sat at exactly 500 bytes). No skill changes. Total skill count: 51.
+- **v0.7.0** (current): Added 12 Snapchat Ads skills: auto-optimize, performance-digest, creative-fatigue-watchdog, creative-refresh, audience-intelligence, geo-expansion, incrementality-test, full-monty, plus four Snapchat-specific skills: change-impact-review (before/after verdicts from Snapchat's change history), dynamic-ads-audit (catalogs, feeds, product sets, dynamic ads), lead-gen-auditor (lead forms and webhooks) and pixel-signal-health (pixel and app setup, view-through share, Events Manager checklist). Analysis-first: with Snapchat write access, a skill can apply pause, budget, bid and rename changes on request, one confirmed change at a time, and never deletes, creates or turns anything on. Total skill count: 63.
+- **v0.6.2** — Trimmed the plugin + marketplace manifest descriptions to a safe margin under the 500-character Cowork install limit (v0.6.1 sat at exactly 500 bytes). No skill changes. Total skill count: 51.
 - **v0.6.1** — Verified the Meta tool bindings live against a real Meta account: the connector exposes Meta under the `facebook_ads_*` family (not `meta_ads_*`), and all 12 Meta skills are bound to it. No skill additions. Total skill count: 51.
 - **v0.6.0** — Added 12 Meta (Facebook/Instagram) Ads skills: auto-optimize, creative-fatigue-watchdog, creative-refresh, audience-intelligence, content-to-campaign, geo-expansion, incrementality-test, performance-digest, full-monty, plus three Meta-specific skills — advantage-plus-audit (ASC / Advantage+), placement-performance (publisher_platform × platform_position), and capi-signal-health (CAPI/dedup/EMQ/AEM/SKAN). Two skills are partially gated by current connector coverage (advantage-plus-audit and capi-signal-health) — each surfaces the limitation and produces a manual-validation checklist. Total skill count: 51.
 - **v0.5.1** — Shortened the plugin manifest description to satisfy the 500-character limit (the v0.5.0 description blocked installation in Claude Cowork). No skill changes. Skill count unchanged: 39.

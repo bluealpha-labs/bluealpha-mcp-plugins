@@ -12,7 +12,7 @@
     {
       "name": "bluealpha-marketing-plugin",
       "source": "./plugins/bluealpha-marketing-plugin",
-      "description": "Paid media strategy, analysis, and measurement via BlueAlpha's unified MCP: Google, Meta, TikTok, LinkedIn and Snapchat Ads, and Meridian MMM. 51 skills for account audits, creative refresh, audience intelligence, incrementality testing, geo expansion, budget reallocation, attribution reconciliation, and full Meta/TikTok/LinkedIn audit suites. Analysis-first; Snapchat skills can apply pause, budget, bid and rename changes on request. Requires the bluealpha-mcp connector.",
+      "description": "Paid media strategy, analysis, and measurement via BlueAlpha's unified MCP: Google, Meta, TikTok, LinkedIn and Snapchat Ads, and Meridian MMM. 63 skills for account audits, creative refresh, audience intelligence, incrementality testing, geo expansion, budget reallocation, attribution reconciliation, and full Meta/TikTok/LinkedIn audit suites. Analysis-first; Snapchat skills can apply pause, budget, bid and rename changes on request. Requires the bluealpha-mcp connector.",
       "version": "0.7.0",
       "category": "marketing",
       "keywords": ["google-ads", "meta-ads", "facebook-ads", "instagram-ads", "tiktok-ads", "linkedin-ads", "snapchat-ads", "paid-media", "mmm", "incrementality", "performance-marketing"]
