@@ -160,6 +160,20 @@ compare cost per install with cost per purchase. All names below were accepted b
 Campaign objectives are in `objective_v2_properties` (for example `objective_v2_type: APP_PROMOTION`, `promotion_type:
 APP_INSTALL`). `pacing_level: CAMPAIGN` means Smart Budgets: Snap sets the ad squad budgets from the campaign's.
 
+## Signal and attribution: verified
+
+- **Pixels** (`get_snapchat_pixels`) return `status` and their owner. Newer, organization-owned pixels also carry
+  `automatic_pii_collection` and `automatic_event_opt_in`; an older, account-owned pixel returned neither.
+- **An ad squad names its event source** in `event_sources`. An app ad squad's is `{"MOBILE_APP": [<Snap App ID>]}`.
+- **App campaigns:**
+  - `measurement_spec` holds the store app ids;
+  - `mobile_app_properties` holds `mobile_app_id` (the Snap App ID), `skad_network_status` and
+    `app_optimization_type`;
+  - each ad squad's `skadnetwork_properties.status` (for example `NEVER_ENROLLED`) says whether it uses SKAdNetwork.
+- **Attribution can be re-read** with `swipe_up_attribution_window` and `view_attribution_window: "none"`. The share
+  can be large: on an iOS app advertiser, 14 days came to 1,139 purchases by default, but only 182 with 28-day swipe
+  and no view. 84% came from the 1-day view window.
+
 ## Change history: verified
 
 - **Entries come newest first,** each with `action` (`CREATED` or `UPDATED`), `event_at` in UTC, `email`, and the app

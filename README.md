@@ -1,18 +1,18 @@
 # BlueAlpha Plugins for Claude Growth Marketers
 
-Turn Claude into a senior paid-media strategist and marketing-mix-model (MMM) analyst. The **BlueAlpha Marketing Plugin** lets you audit ad accounts, reallocate budget, and design incrementality tests across **Google Ads, Meta Ads (Facebook/Instagram), TikTok Ads, and LinkedIn Ads** — by asking questions in plain English. No spreadsheets, no SQL, no dashboards.
+Turn Claude into a senior paid-media strategist and marketing-mix-model (MMM) analyst. The **BlueAlpha Marketing Plugin** lets you audit ad accounts, reallocate budget, and design incrementality tests across **Google Ads, Meta Ads (Facebook/Instagram), TikTok Ads, LinkedIn Ads, and Snapchat Ads** — by asking questions in plain English. No spreadsheets, no SQL, no dashboards.
 
 This is BlueAlpha's official public marketplace for Claude plugins. It's free to add, installs in two commands, and works in both **Claude Code** and **Claude Cowork**.
 
 ## What is the BlueAlpha Marketing Plugin?
 
-The BlueAlpha Marketing Plugin is a Claude plugin — a bundle of **51 skills** — built for performance marketers and analytics teams. It connects Claude to your **Google Ads, Meta Ads, TikTok Ads, and LinkedIn Ads** accounts plus a **Meridian marketing mix model**, then runs audits, analysis, and media-planning workflows through natural conversation.
+The BlueAlpha Marketing Plugin is a Claude plugin — a bundle of **63 skills** — built for performance marketers and analytics teams. It connects Claude to your **Google Ads, Meta Ads, TikTok Ads, LinkedIn Ads, and Snapchat Ads** accounts plus a **Meridian marketing mix model**, then runs audits, analysis, and media-planning workflows through natural conversation.
 
-It is **analysis-first**: every skill reads your live data and returns recommendations, diagnostics, and plans. Actually executing changes is routed through the BlueAlpha pipeline — the plugin does not make unsupervised edits to your ad accounts.
+It is **analysis-first**: every skill reads your live data and returns recommendations, diagnostics, and plans. Actually executing changes is routed through the BlueAlpha pipeline — the plugin does not make unsupervised edits to your ad accounts. The one exception is Snapchat: with Snapchat write access, its skills can apply pause, budget, bid and rename changes when you ask, one change at a time, each confirmed by you.
 
 ## What can it do?
 
-The plugin covers five areas of paid-media work.
+The plugin covers six areas of paid-media work.
 
 ### Google Ads optimization (10 skills)
 
@@ -30,6 +30,10 @@ TikTok account optimization, hook/hold/completion creative-fatigue scoring, crea
 
 LinkedIn account health checks, audience-health and targeting-overlap analysis, bid-strategy and frequency-cap audits, creative-fatigue scoring, Lead Gen Form quality auditing, demographic deep-dives (spend vs. intended targeting by seniority, job function, company size, and industry), performance digests, and a full-account orchestrator.
 
+### Snapchat Ads management (12 skills)
+
+Snapchat account optimization (delivery status, goal-matched budget reallocation, settings), pixel and Conversions API signal-health trust gating with the view-through share, swipe-rate and completion creative-fatigue scoring, creative-brief production for full-screen vertical Snap Ads, audience intelligence (age, gender, OS, Snap Lifestyle Categories, each ad squad's targeting), region and DMA geo expansion, geo-holdout incrementality testing, change-history impact reviews, hour-of-day and day-of-week dayparting, ad review and creative spec audits, weekly/monthly performance digests, and a full-account orchestrator. With Snapchat write access, the skills can also apply pause, budget, bid and rename changes when you ask.
+
 ### Marketing mix modeling & incrementality (10 skills)
 
 Budget-reallocation simulation with credible intervals, saturation and diminishing-returns analysis, model trust grading (convergence, prior dominance, fit), per-channel "act vs. test" routing, MMM-vs-platform attribution reconciliation, adstock and launch-timing projection, quarterly incrementality test roadmaps, and side-by-side budget scenario planning.
@@ -38,7 +42,7 @@ Budget-reallocation simulation with credible intervals, saturation and diminishi
 
 ## Who is it for?
 
-Performance marketers, growth leads, paid-media managers, in-house Google Ads / Meta / TikTok / LinkedIn owners, and marketing analytics teams who want senior media-strategist and MMM-analyst judgment on demand — without senior-strategist hourly rates or agency lag.
+Performance marketers, growth leads, paid-media managers, in-house Google Ads / Meta / TikTok / LinkedIn / Snapchat owners, and marketing analytics teams who want senior media-strategist and MMM-analyst judgment on demand — without senior-strategist hourly rates or agency lag.
 
 ## Example questions you can ask
 
@@ -51,6 +55,7 @@ Once installed, you talk to Claude in plain English. For example:
 - *"Check TikTok creative fatigue — which videos are tired?"*
 - *"Optimize my Meta account and tell me whether Advantage+ is helping or leaking spend."*
 - *"Can I trust my Meta conversions? Run the CAPI signal-health check."*
+- *"What changed in my Snapchat account last month, and did it help?"*
 - *"Design a geo holdout test to prove my brand campaign is incremental."*
 - *"Reconcile what Google Ads is reporting vs. what the MMM says — where do they disagree?"*
 
@@ -77,18 +82,18 @@ Download the single `.plugin` file from the [latest release](https://github.com/
 
 ## What data does it connect to?
 
-A BlueAlpha account and the BlueAlpha MCP connector. Through that one connection, the plugin reads whichever of these you have connected: **Google Ads**, **Meta Ads**, **TikTok Ads**, **LinkedIn Ads**, and your **Meridian marketing mix model**. Don't have a BlueAlpha account yet? Visit [bluealpha.ai](https://bluealpha.ai).
+A BlueAlpha account and the BlueAlpha MCP connector. Through that one connection, the plugin reads whichever of these you have connected: **Google Ads**, **Meta Ads**, **TikTok Ads**, **LinkedIn Ads**, **Snapchat Ads**, and your **Meridian marketing mix model**. Don't have a BlueAlpha account yet? Visit [bluealpha.ai](https://bluealpha.ai).
 
 ## Frequently asked questions
 
 **What is a Claude plugin?**
-A Claude plugin is a packaged set of skills (reusable, structured workflows) plus connectors that extend what Claude can do. The BlueAlpha Marketing Plugin adds 51 paid-media and MMM skills to Claude.
+A Claude plugin is a packaged set of skills (reusable, structured workflows) plus connectors that extend what Claude can do. The BlueAlpha Marketing Plugin adds 63 paid-media and MMM skills to Claude.
 
 **Does it change my ad campaigns automatically?**
-No. The plugin is analysis-only. It reads your data and returns recommendations; any execution is routed through the BlueAlpha pipeline, not performed directly by Claude.
+No. The plugin is analysis-first. It reads your data and returns recommendations; any execution is routed through the BlueAlpha pipeline, not performed directly by Claude. The one exception is Snapchat: with Snapchat write access, its skills can apply pause, budget, bid and rename changes when you ask, one change at a time, each confirmed by you. They never delete, create or turn anything on.
 
 **Which ad platforms are supported?**
-Google Ads, Meta Ads (Facebook/Instagram), TikTok Ads, and LinkedIn Ads — plus Meridian-based marketing mix modeling (MMM) and geo-holdout incrementality testing.
+Google Ads, Meta Ads (Facebook/Instagram), TikTok Ads, LinkedIn Ads, and Snapchat Ads — plus Meridian-based marketing mix modeling (MMM) and geo-holdout incrementality testing.
 
 **Do I need to know SQL or build dashboards?**
 No. You ask questions in plain English; the plugin pulls the live data and analyzes it for you.
@@ -106,7 +111,7 @@ A marketing mix model is a statistical model that estimates how each marketing c
 
 | Plugin | What it does | Skills |
 | --- | --- | --- |
-| **bluealpha-marketing-plugin** | Paid media strategy, analysis, and measurement for Google Ads, Meta Ads, TikTok Ads, and LinkedIn Ads, with Meridian MMM and incrementality testing. [Read more →](./plugins/bluealpha-marketing-plugin/README.md) | 51 |
+| **bluealpha-marketing-plugin** | Paid media strategy, analysis, and measurement for Google Ads, Meta Ads, TikTok Ads, LinkedIn Ads, and Snapchat Ads, with Meridian MMM and incrementality testing. [Read more →](./plugins/bluealpha-marketing-plugin/README.md) | 63 |
 
 ## Support
 
