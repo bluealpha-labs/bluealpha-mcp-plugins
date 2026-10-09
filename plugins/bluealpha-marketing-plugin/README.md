@@ -106,6 +106,9 @@ one confirmed change at a time. See `SNAPCHAT_SKILLS.md`.
 - `snapchat-performance-digest`: weekly/monthly Snapchat narrative read, results reported per goal
 - `snapchat-creative-fatigue-watchdog`: swipe-rate, completion and frequency decay per ad; refresh queue
 - `snapchat-creative-refresh`: winning-creative audit, then a 5-concept brief for full-screen 9:16 Snap Ads
+- `snapchat-audience-intelligence`: results by age/gender/OS, interest affinity, targeting map
+- `snapchat-geo-expansion`: region/DMA tiers and expansion candidates with targeting ids
+- `snapchat-incrementality-test`: DMA geo-holdout design, leakage monitoring and read
 
 ## What you can ask it to do
 
