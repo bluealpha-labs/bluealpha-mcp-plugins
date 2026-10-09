@@ -14,7 +14,7 @@ counterpart of `tiktok-performance-digest` and `meta-performance-digest`. Narrat
    - **weekly:** the last 7 full days, ending yesterday;
    - **monthly:** the last full calendar month.
 
-   The comparison period is the one just before, of equal length.
+   The comparison period is the one just before: the 7 days before for weekly, the calendar month before for monthly.
 
 2. **Learn what each live ad squad optimizes for.** List live campaigns, then their ad squads:
    ```

@@ -5,8 +5,9 @@
 > `user_message` every time, and batch independent reads into one `execute(calls=[...])`.
 
 Turns a Snapchat account's winning ads into a brief for the next ones. The Snapchat counterpart of
-`tiktok-creative-refresh` and `meta-creative-refresh`. Analysis only: making and uploading the ads is the user's
-step, in Ads Manager or with the Snapchat write tools.
+`tiktok-creative-refresh` and `meta-creative-refresh`. Analysis-first: making and uploading the ads is the
+user's step, in Ads Manager or with the Snapchat write tools. After a test, the skill can pause the losers on
+request (Phase 4).
 
 ## Phase 1: Confirm a refresh is needed
 
@@ -59,12 +60,13 @@ If none apply, say so and stop: a refresh against healthy creative burns budget 
 
 ## Phase 3: The brief (five concepts)
 
-Ground every concept in this account's winners. Snap's own published guidance (Snap's "golden rules", 2018) is the
-frame:
-- top snaps of five seconds or less, where the first two seconds matter most;
-- a clear action;
-- one message per ad;
-- purposeful sound ("almost 60%" of Snapchatters had sound on).
+Ground every concept in this account's winners. Snap's creative best practices (Snap for Business, 2020) are
+the frame:
+- an ad of around 5 to 6 seconds;
+- the key message from the start, within the first 2 seconds;
+- sound designed in: 64% of Snap Ads are viewed with sound on.
+
+Add the basics: one message per ad, and a clear action.
 
 Where the account's winners disagree, such as longer videos that win, say so and follow the account's evidence.
 
@@ -83,7 +85,6 @@ instead of a slower decline.
 
 Other Snapchat formats to consider when they fit:
 - story ads, for several snaps of one message;
-- collection ads, if there's a catalog (`snapchat-dynamic-ads-audit`);
 - AR lenses, which are a bigger production.
 
 ## Phase 4: Test and rollout
@@ -105,7 +106,7 @@ Other Snapchat formats to consider when they fit:
 ## Important notes
 
 - **Evidence over taste.** Every concept cites the winner it builds on or the gap it fills.
-- **Snap's guidance is dated (2018).** Use it as a frame, not a rule, and let the account's results decide.
+- **Snap's guidance is general (2020).** Use it as a frame, not a rule, and let the account's results decide.
 - **Don't refresh on one bad day.** Conversions for the last day or two aren't final (Snap's `notes`).
 - **Creative changes go back to review.** Editing a live creative pauses its ads until Snap approves it again, so
   new concepts go into new ads.

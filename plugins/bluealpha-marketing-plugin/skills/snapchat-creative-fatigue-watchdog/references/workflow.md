@@ -10,7 +10,7 @@ Ad-level fatigue and waste for a Snapchat Ads account, the Snapchat counterpart 
 ## Phase 0: BlueAlpha's fatigue engine, if it covers Snapchat
 
 BlueAlpha's creative-fatigue engine scores ads from the client's warehouse data. `search` for "creative fatigue
-alerts" and read the platforms its results accept.
+scores" and read the platforms its results accept.
 - **If Snapchat is one of them:** pull the alert summary and the alert rows for the latest detection date, with the
   arguments the search result's schema gives. Use its categories and its severity ladder (`monitor` <
   `early_warning` < `warning` < `critical`) as the spine of the report. The steps below add detail and catch what
@@ -91,7 +91,7 @@ Starting thresholds. Tighten or loosen them with the account's own history, and 
 
 | Severity | Rule |
 |---|---|
-| `critical` | Swipe rate down 40% or more, or down 25% with frequency over 2.5 in the recent window, with cost per result up 20% or more |
+| `critical` | Cost per result up 20% or more, with either swipe rate down 40% or more, or swipe rate down 25% or more and frequency over 2.5 in the recent window |
 | `warning` | Swipe rate down 25% or more, with CPM or cost per result up 20% or more |
 | `early_warning` | Swipe rate down 15% or more; or, for video, completion or 15-second view rate down 20% or more |
 | `monitor` | Smaller declines, or too little volume to judge (under 50,000 impressions in a window) |
