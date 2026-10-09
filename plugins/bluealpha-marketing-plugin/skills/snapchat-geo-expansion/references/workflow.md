@@ -41,7 +41,7 @@ this skill first checks whether results by geo are real, and otherwise gets them
   1. `search` for the client's warehouse or platform history by geo ("platform history by region"), or the MMM's
      geo-level contribution ("MMM geo contribution"), and use the results by geo it returns;
   2. ask the user for results by state or DMA from their own analytics or app attribution partner;
-  3. otherwise, tier on cost per swipe and swipe rate, labelled clearly as a proxy, not results.
+  3. otherwise, tier on cost per swipe and swipe rate, labeled clearly as a proxy, not results.
 
 ## Phase 3: Tier current markets
 

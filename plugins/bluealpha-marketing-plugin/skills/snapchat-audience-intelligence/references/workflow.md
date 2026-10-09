@@ -5,7 +5,7 @@
 > `search`, then `execute`, passing `user_message` every time, and batch independent reads into one
 > `execute(calls=[...])`.
 
-Who converts on Snapchat, and whether the audiences behind it are healthy. The Snapchat counterpart of
+Who converts on Snapchat, and how each ad squad's targeting reaches them. The Snapchat counterpart of
 `tiktok-audience-intelligence` and `meta-audience-intelligence`.
 
 ## What Snapchat tells you (read this first)
@@ -16,9 +16,8 @@ Who converts on Snapchat, and whether the audiences behind it are healthy. The S
 - **Snap's `35+` bucket overlaps 35-44, 45-54 and 55+:** drop it.
 - **Splits only cover one window:** 31 days at DAY, or a TOTAL; never at HOUR. A window that crosses a targeting
   change mixes both settings.
-- **Audience segments** carry their size (`approximate_number_users`), `targetable_status`, `source_type`
-  (`FIRST_PARTY` customer list, `LOOKALIKE`, `ENGAGEMENT`, `PIXEL`, `MOBILE`, `PROFILE_ENGAGEMENT`), retention and
-  `upload_status`.
+- **Audience segments come as ids only,** in each ad squad's `targeting.segments`. Their names, types and sizes
+  are in Ads Manager (Audiences); the connector doesn't read segments.
 
 ## Phase 1: Demographics and device
 
@@ -51,33 +50,20 @@ Rank by affinity, with a floor of 1% of the campaign's impressions so tiny rows 
 high-affinity interests are creative angles and targeting ideas, not proven converters: Snap doesn't report their
 results.
 
-## Phase 3: Audience segment health
-
-```
-execute(tool_id="snapchat_ads.get_snapchat_audience_segments", arguments={ad_account_id, limit: 100})
-```
-
-Flag:
-- **Not usable:** `targetable_status` other than `READY`.
-- **Too small:** `approximate_number_users` of 0, or well under about 1,000. Snap documents 1,000 as the targetable
-  floor for profile engagement audiences; treat it as a guide for the rest. A `READY` segment can still be empty, so
-  check the size.
-- **Stale customer lists:** a `FIRST_PARTY` list whose `updated_at` is months old keeps old customers and misses new
-  ones. Recommend a fresh upload.
-- **Lookalikes** with a small or stale seed.
-
-## Phase 4: Targeting map, per live ad squad
+## Phase 3: Targeting map, per live ad squad
 
 From `get_snapchat_ad_squads`, for each live ad squad:
-- **Included segments:** customer, pixel or app audiences make it retargeting; lookalikes and no segments make it
-  prospecting.
-- **Excluded segments:** prospecting should exclude existing customers or purchasers. Name the segments, from
-  Phase 3.
+- **Segments:** the segment ids it includes and excludes, from `targeting.segments`. Ask the user which ids are
+  customer lists, lookalikes or pixel and app audiences, or have them check in Ads Manager (Audiences).
+- **Prospecting or retargeting:** no included segments, or only lookalikes, makes it prospecting; customer, pixel
+  or app audiences make it retargeting.
+- **Exclusions:** prospecting should exclude existing customers or purchasers. Say which segment ids are
+  excluded, and ask whether they cover them.
 - **Targeting expansion:** `enable_targeting_expansion` and `auto_expansion_options`. Broad prospecting with
   expansion on is normal; a narrow retargeting ad squad with expansion on leaks into prospecting.
 - **Demographics, devices, geos** against where results come from (Phase 1).
 
-## Phase 5: Tiers and recommendations
+## Phase 4: Tiers and recommendations
 
 **Tier the age, gender and OS buckets, within each goal:**
 
@@ -90,7 +76,6 @@ From `get_snapchat_ad_squads`, for each live ad squad:
 **Recommendations, each with its evidence:**
 - age or device targeting to tighten or open;
 - exclusions to add;
-- segments to refresh or drop from targeting;
 - prospecting and retargeting split fixes;
 - interest angles to test in creative (hand to `snapchat-creative-refresh`).
 
@@ -101,10 +86,10 @@ the tool reference.
 ## Output
 
 1. Demographic and device table: spend, results, cost per result, swipe rate, tier.
-2. Interest affinity: top and bottom 10, labelled as delivery only.
-3. Audience segment health: the flagged segments and why.
-4. Targeting map: each live ad squad, prospecting or retargeting, exclusions, expansion.
-5. Prioritized recommendations.
+2. Interest affinity: top and bottom 10, labeled as delivery only.
+3. Targeting map: each live ad squad, prospecting or retargeting, the segment ids it includes and excludes,
+   expansion.
+4. Prioritized recommendations.
 
 ## Important notes
 
