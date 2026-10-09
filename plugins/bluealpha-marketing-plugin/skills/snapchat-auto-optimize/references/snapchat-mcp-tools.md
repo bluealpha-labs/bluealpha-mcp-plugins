@@ -160,6 +160,44 @@ compare cost per install with cost per purchase. All names below were accepted b
 Campaign objectives are in `objective_v2_properties` (for example `objective_v2_type: APP_PROMOTION`, `promotion_type:
 APP_INSTALL`). `pacing_level: CAMPAIGN` means Smart Budgets: Snap sets the ad squad budgets from the campaign's.
 
+## Change history: verified
+
+- **Entries come newest first,** each with `action` (`CREATED` or `UPDATED`), `event_at` in UTC, `email`, and the app
+  the change was made through (`app_name`, for example "Snapchat SSO" for Ads Manager).
+- **`update_value_records`** holds a `before_value` and an `after_value` per field (`daily_budget`, `bid`,
+  `bid_strategy`, `targeting`, `status`, ...). On a `CREATED` entry it holds only the starting values.
+- **Snap writes bid strategies in lowercase** (`auto_bid`, `target_cost`) and an `AUTO_BID` bid as the text
+  "auto bid", with an `auto_bid` true or false field alongside. The update tools take the uppercase values.
+
+## Hourly stats: verified
+
+- **HOUR rows come in the account's timezone,** one per hour with delivery (hours without any are left out, as
+  `omit_empty` does). They carry results, such as `conversion_purchases`, as well as delivery, but no reach, no
+  `conversion_visit*` metrics and no `report_dimension`. One call covers up to 31 days.
+- **For a time-of-day profile, pass `action_report_time: "impression"`.** Results then land in the hour of the
+  impression that led to them; at the default, `conversion`, they land in the hour of the purchase or install.
+- **Adding HOUR rows into time buckets (hour of day, day of week, date) is the one place to add rows.** Spend,
+  impressions, swipes and results are counts, and they add up exactly: 14 days of hourly rows on an app advertiser
+  summed to the TOTAL read for the same range, to the cent and the purchase. Check the sum against a TOTAL read
+  every time; never add reach.
+- **Ad schedules:** an ad squad's `ad_scheduling_config` sets the days and hours it runs, and is absent when it
+  runs at all hours. Snap accepts a schedule only with a lifetime budget, not a daily one, and runs it in each
+  viewer's local time; flight dates stay in the account's timezone.
+
+## Ad review and media: verified
+
+- **Ads** carry `review_status` and, when rejected, `review_status_reasons`: Snap's reasons as text, each saying
+  what to fix. A rejected ad's `delivery_status` includes `INVALID_NOT_APPROVED_REVIEW_STATUS`, and an ad whose
+  creative's Public Profile was deleted shows `INVALID_CREATIVE_PROFILE_DELETED`.
+- **Creatives** carry their own `review_status` and `review_status_details`, `packaging_status`, `headline`,
+  `brand_name`, and `profile_properties.profile_id` (the Public Profile, whose name shows when there's no
+  `brand_name`).
+- **Media** carry `media_status`, `file_size_in_bytes`, `duration_in_seconds` for video, and `width_px` and
+  `height_px` in `video_metadata` or `image_metadata`. The audio loudness fields came back empty.
+- **Housing, credit and employment:** an ad account that runs these ads has
+  `regulations.restricted_delivery_signals: true`. On an approved credit advertiser, the live ad squads also had
+  `targeting.regulated_content: true`.
+
 ## Not exposed
 
 - **Frequency caps:** ad squads come back without their frequency-cap settings. Judge frequency from the `frequency`
