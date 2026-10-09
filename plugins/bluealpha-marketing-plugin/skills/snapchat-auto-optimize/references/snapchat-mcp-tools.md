@@ -169,27 +169,34 @@ APP_INSTALL`). `pacing_level: CAMPAIGN` means Smart Budgets: Snap sets the ad sq
 - **Snap writes bid strategies in lowercase** (`auto_bid`, `target_cost`) and an `AUTO_BID` bid as the text
   "auto bid", with an `auto_bid` true or false field alongside. The update tools take the uppercase values.
 
-## Catalogs, dynamic ads and lead ads
+## Hourly stats: verified
 
-How the entities link, from the connector's source:
+- **HOUR rows come in the account's timezone,** one per hour with delivery (hours without any are left out, as
+  `omit_empty` does). They carry results, such as `conversion_purchases`, as well as delivery, but no reach, no
+  `conversion_visit*` metrics and no `report_dimension`. One call covers up to 31 days.
+- **For a time-of-day profile, pass `action_report_time: "impression"`.** Results then land in the hour of the
+  impression that led to them; at the default, `conversion`, they land in the hour of the purchase or install.
+- **Adding HOUR rows into time buckets (hour of day, day of week, date) is the one place to add rows.** Spend,
+  impressions, swipes and results are counts, and they add up exactly: 14 days of hourly rows on an app advertiser
+  summed to the TOTAL read for the same range, to the cent and the purchase. Check the sum against a TOTAL read
+  every time; never add reach.
+- **Ad schedules:** an ad squad's `ad_scheduling_config` sets the days and hours it runs, and is absent when it
+  runs at all hours. Snap accepts a schedule only with a lifetime budget, not a daily one, and runs it in each
+  viewer's local time; flight dates stay in the account's timezone.
 
-| Link | Field |
-|---|---|
-| A campaign's catalog | the campaign's `product_properties.catalog_id` |
-| An ad squad's product set | the ad squad's `product_properties.product_set_id` |
-| A dynamic creative's set and template | the creative's `dynamic_render_properties` (`product_set_id`, `dynamic_template_id`) |
-| A collection creative's tiles | the creative's `collection_properties.interaction_zone_id` |
-| A lead ad's form | the creative's `lead_generation_form_id` (creative `type: LEAD_GENERATION`) |
+## Ad review and media: verified
 
-- **Dynamic ads** have `render_type: DYNAMIC`, and their creative must name their ad squad's product set.
-- **Verified live on a new catalog:**
-  - `default_product_set_id` is the "All Products" set, with an empty filter;
-  - `event_sources` is absent when none is set;
-  - product sets carry a `status`: `LIVE`, or `MATERIALIZING` while Snap builds the set after it's created or its
-    filter changes;
-  - a feed upload starts `INITIALIZED`, with its item counts and `issues_summary` in `summary`.
-- **Lead forms, verified live:** `form_fields` (for example `FIRST_NAME`, `EMAIL`), `strategy_type` (`MORE_VOLUME`),
-  `default_end_page`, `privacy_policy_url` and `status`. A form with no webhook returns an empty `webhooks` list.
+- **Ads** carry `review_status` and, when rejected, `review_status_reasons`: Snap's reasons as text, each saying
+  what to fix. A rejected ad's `delivery_status` includes `INVALID_NOT_APPROVED_REVIEW_STATUS`, and an ad whose
+  creative's Public Profile was deleted shows `INVALID_CREATIVE_PROFILE_DELETED`.
+- **Creatives** carry their own `review_status` and `review_status_details`, `packaging_status`, `headline`,
+  `brand_name`, and `profile_properties.profile_id` (the Public Profile, whose name shows when there's no
+  `brand_name`).
+- **Media** carry `media_status`, `file_size_in_bytes`, `duration_in_seconds` for video, and `width_px` and
+  `height_px` in `video_metadata` or `image_metadata`. The audio loudness fields came back empty.
+- **Housing, credit and employment:** an ad account that runs these ads has
+  `regulations.restricted_delivery_signals: true`. On an approved credit advertiser, the live ad squads also had
+  `targeting.regulated_content: true`.
 
 ## Not exposed
 
@@ -197,8 +204,6 @@ How the entities link, from the connector's source:
   metric.
 - **Audiences, catalogs and lead forms:** the connector doesn't read them. An ad squad's targeting shows its segment
   ids, and a lead ad's creative its `lead_generation_form_id`.
-- **Products:** the products in a catalog, how many a product set holds, and stats by product. Feed uploads give item
-  counts; dynamic ads give stats by ad squad, and so by product set.
 - **No account-wide change log:** `get_snapchat_change_history` takes one entity at a time, and history starts on
   16 July 2019.
 - **Signal quality:** held back, as above.

@@ -37,9 +37,10 @@ calls the others unchanged.
        entity_type: "ad_squad", limit: 50}}
    ])
    ```
-2. **Ads and creatives, where needed.** Read them for an ad squad whose results moved while its own history doesn't
-   explain it, or for every ad when there are fewer than about 30. Use `entity_type: "ad"`, then `"creative"` for
-   their creatives.
+2. **Ads, for every ad squad you judge.** An ad turned on, paused or swapped inside either window is an overlap
+   (Phase 4), so read the history of each judged ad squad's ads (`entity_type: "ad"`), batched like the calls above.
+   Read a creative's history (`entity_type: "creative"`) when its ad's results moved and the ad's own history
+   doesn't explain it.
 3. **Keep the entries in the window,** and the 7 days before it. When `complete` is false and the oldest entry returned
    is still inside the window, say the history for that entity is cut off.
 4. **Put each entry on the account's calendar.** `event_at` is UTC, so convert it to the account's timezone before
@@ -53,19 +54,19 @@ calls the others unchanged.
 | Budget | `daily_budget`, `lifetime_budget`, `lifetime_spend_cap` | Did spend follow, and what happened to cost per result |
 | Bid | `bid`, `bid_strategy` | Cost per result and the number of results |
 | Targeting | `targeting` | CPM, swipe rate and cost per result |
-| Goal | `optimization_goal` | Only the new goal's metric, after the change: the windows don't measure the same thing |
 | Status | `status` | Spend and results across the account (did they move elsewhere?) |
 | Schedule | `start_time`, `end_time` | Delivery days |
 | Creative | an ad's `creative_id`, or a creative's own fields | The ad's swipe rate and results |
 
+   Snap doesn't let an ad squad's `optimization_goal` change: a new goal means a new ad squad (a `CREATED` entry).
    Report any other field with its before and after values. Changes to one entity on the same day are one event;
    people edit in bursts, such as a bid strategy change followed by a bid tweak. An edit undone the same day (paused,
    then turned back on) is no change. Note who made each one (`email`) and the app it was made through (`app_name`).
 
 ## Phase 3: Before and after
 
-For each event, measure the entity it changed: the campaign for a campaign budget, the ad squad for its bid,
-targeting or goal, and the ad for a creative swap.
+For each event, measure the entity it changed: the campaign for a campaign budget, the ad squad for its bid or
+targeting, and the ad for a creative swap.
 
 - **Windows:** the 7 full days before the change day, and the 7 full days after it. Leave the change day out; it
   mixes both settings.
@@ -106,11 +107,11 @@ targeting or goal, and the ad for a creative swap.
 | **Helped** | Cost per result improved by more than 15% beyond the control's shift, at the same or higher volume |
 | **Hurt** | Cost per result worsened by more than 15% beyond the control's shift, or results fell with spend held |
 | **No clear effect** | Within 15%, or it moved the same as the control |
-| **Too recent** | Fewer than 7 full days after the change; show the days so far, labelled early |
+| **Too recent** | Fewer than 7 full days after the change; show the days so far, labeled early |
 | **Confounded** | It overlaps another change; judged together |
 | **Too small** | Fewer than 30 results in either window |
 
-   A bid strategy or goal change resets how Snap delivers; treat its first week as early, not final.
+   A bid strategy change resets how Snap delivers; treat its first week as early, not final.
 
 ## Phase 5: Act
 
@@ -124,7 +125,7 @@ targeting or goal, and the ad for a creative swap.
     `bid_strategy: "AUTO_BID"` without a `bid`. Back to `TARGET_COST` or `LOWEST_COST_WITH_MAX_BID`: pass the
     strategy and its before `bid`.
   - A hurtful change that turned something on can be undone by pausing it.
-- **Never revert** targeting, goal, schedule, a creative, or a pause (that would set something ACTIVE). Give the
+- **Never revert** targeting, schedule, a creative, or a pause (that would set something ACTIVE). Give the
   exact before values from the history, so the user can restore them in Ads Manager.
 - **A change that helped:** keep it. To go further with a budget, step by up to 20% at a time; the update tools warn
   above that.

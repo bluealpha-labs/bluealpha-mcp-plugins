@@ -109,9 +109,9 @@ one confirmed change at a time. See `SNAPCHAT_SKILLS.md`.
 - `snapchat-audience-intelligence`: results by age/gender/OS, interest affinity, targeting map
 - `snapchat-geo-expansion`: region/DMA tiers and expansion candidates with targeting ids
 - `snapchat-incrementality-test`: DMA geo-holdout design, leakage monitoring and read
-- `snapchat-change-impact-review`: before/after verdict on each budget, bid, targeting, goal, status or creative change, from Snapchat's change history
-- `snapchat-dynamic-ads-audit`: catalogs, feed upload errors, product sets, templates and dynamic ads, with results by product set
-- `snapchat-lead-gen-auditor`: lead forms, webhooks, form friction, ads spending without leads, cost per lead
+- `snapchat-change-impact-review`: before/after verdict on each budget, bid, targeting, status or creative change, from Snapchat's change history
+- `snapchat-dayparting-analysis`: spend, cost per result and swipe rate by hour of day and day of week, credited to the hour of the impression; recommends an ad schedule only when a block of hours is consistently worse
+- `snapchat-ad-review-auditor`: rejected and stuck ads with Snap's reasons and fixes (including the housing, credit and employment rules), ad squads with no approved ad, and live creative and media against Snap's specs
 
 ## What you can ask it to do
 
