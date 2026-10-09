@@ -6,8 +6,8 @@
 > reads into one `execute(calls=[...])`.
 
 The full optimization cycle for a Snapchat Ads account, the Snapchat counterpart of `auto-optimize` (Google),
-`tiktok-auto-optimize` and `meta-auto-optimize`. Run it weekly on high-spend accounts, every two weeks otherwise. The
-output is a scorecard and a risk-tiered list of changes.
+`tiktok-auto-optimize` and `meta-auto-optimize`. Run it weekly on high-spend accounts, every two weeks on mid-spend
+ones and monthly on small ones (Phase 8). The output is a scorecard and a risk-tiered list of changes.
 
 The skill is analysis-first. It can apply pause, budget, bid and rename changes when the user asks and has write
 access, following "Applying changes" in the tool reference (Phase 7).
@@ -26,19 +26,21 @@ access, following "Applying changes" in the tool reference (Phase 7).
 
 ## Phase 2: Structural audit
 
-1. **Pull the structure.** Read campaigns and ad squads in one batch:
+1. **Pull the structure.** Read the live campaigns first:
+   ```
+   execute(tool_id="snapchat_ads.get_snapchat_campaigns", arguments={ad_account_id, status: "ACTIVE"})
+   ```
+   Then read the ad squads and ads of each live campaign, one pair of calls per campaign in one batch.
+   Account-wide listings on a long-running account are large and stop at `limit` (see "Large responses" in the
+   tool reference):
    ```
    execute(calls=[
-     {tool_id: "snapchat_ads.get_snapchat_campaigns", arguments: {ad_account_id, status: "ACTIVE"}},
-     {tool_id: "snapchat_ads.get_snapchat_ad_squads", arguments: {ad_account_id, limit: 100}}
+     {tool_id: "snapchat_ads.get_snapchat_ad_squads", arguments: {ad_account_id, campaign_id: <live campaign id>}},
+     {tool_id: "snapchat_ads.get_snapchat_ads", arguments: {ad_account_id, campaign_id: <live campaign id>,
+       limit: 100}}
    ])
    ```
-   Then read ads one live campaign at a time. An account-wide ad listing on a long-running account is large and
-   stops at `limit`:
-   ```
-   execute(tool_id="snapchat_ads.get_snapchat_ads", arguments={ad_account_id, campaign_id: <live campaign id>, limit: 100})
-   ```
-   If a listing comes back with `complete: false`, narrow it by campaign and say which campaigns were read.
+   If a listing comes back with `complete: false`, say so, and say which campaigns were read in full.
 
 2. **Find what's actually live.**
    - `status: ACTIVE` only means not paused.
@@ -68,7 +70,7 @@ access, following "Applying changes" in the tool reference (Phase 7).
    |---|---|---|
    | **Objective and goal alignment** | Does each ad squad's `optimization_goal` serve the campaign's objective and the business goal? | An app campaign optimizing `APP_INSTALLS` when the business is paid on purchases or sign-ups optimizes the cheap event, not the valuable one. A sales or web campaign on `SWIPES` or `IMPRESSIONS` buys attention, not conversions. |
    | **Bid strategy fit** | Does `bid_strategy` match the volume and goal? | `AUTO_BID` suits new or low-volume ad squads. `TARGET_COST` needs steady volume, and its `bid` is a cost target: compare it with the cost per result actually achieved (Phase 4). `LOWEST_COST_WITH_MAX_BID` with a cap below the market price throttles delivery. |
-   | **Learning and volume** | Do ad squads get enough results to optimize? | Count each ad squad's goal-matched results over the last 7 days (Phase 4 pull). Snap's guidance is roughly 50 optimization events a week for stable delivery: treat it as a guide, not a hard line. Many ad squads splitting a small volume is fragmentation. |
+   | **Learning and volume** | Do ad squads get enough results to optimize? | Count each ad squad's goal-matched results over the last 7 days (Phase 4 pull). Snap's guidance is to let an ad squad reach 30 to 50 conversions on its goal before judging it; learning usually takes 1 to 7 days. Under about 30 a week, an ad squad may not get through learning: treat that as a guide, not a hard line. Many ad squads splitting a small volume is fragmentation. |
    | **Delivery health** | Is anything blocked? | Ads not `APPROVED` (with `review_status_reasons`); ad squads whose `targeting_reach_status` isn't `VALID`; end times passed; ACTIVE ad squads with no VALID ad. |
    | **Creative depth** | Enough approved, delivering ads per ad squad? | Fewer than 3 VALID ads per ad squad leaves the system little to choose from; one ad carrying an ad squad is a single point of failure. |
 
@@ -108,7 +110,7 @@ access, following "Applying changes" in the tool reference (Phase 7).
    | **L1: Delivery blocked** | No impressions | `delivery_status` codes; ads not approved; end time passed |
    | **L2: Bid too tight** | Some impressions, pacing < 0.5 | `LOWEST_COST_WITH_MAX_BID` or `TARGET_COST` set below what results cost (Phase 4) |
    | **L3: Audience too narrow** | Low impressions on any bid | `targeting_reach_status`; narrow age, geo or device targeting; many `EXCLUDE` segments; `regulated_content` restrictions |
-   | **L4: Not enough volume** | Spends, but results erratic | Well under about 50 goal results a week (Phase 2 dimension 3) |
+   | **L4: Not enough volume** | Spends, but results erratic | Well under about 30 goal results a week (Phase 2 dimension 3) |
    | **L5: Auction pressure** | Cost per thousand impressions rising | CPM = spend ÷ impressions × 1,000, last 7 days against the 7 before; over 20% up on unchanged targeting |
 
 4. **Report:** the total daily budget going unspent, by layer, with the five worst ad squads, each with its cause and
@@ -181,8 +183,8 @@ access, following "Applying changes" in the tool reference (Phase 7).
    - **15-second view rate** = `video_views_15s` ÷ `video_views`.
    - **Spend concentration:** the share of spend on the top 3 ads.
    - **VALID ads per ad squad.**
-   - **Frequency** over 2 a week on a broad audience is a saturation risk to watch (Snap's own 2019 research
-     suggested about 2 exposures a week).
+   - **Frequency** over about 2 a week on a broad audience is a saturation risk to watch. It's a rule of
+     thumb, not a Snap benchmark.
 
 3. **Hand off:**
    - falling swipe rate with rising frequency, or top spenders running for weeks → `snapchat-creative-fatigue-watchdog`;
@@ -259,7 +261,7 @@ Suggest the `schedule` skill to run it automatically.
 - **Conversion numbers for the last day or two aren't final.** Pass on the response's `notes` whenever results
   include days after `conversion_data_processed_end_time`.
 - **Snapchat attributes to itself.** Defaults are 28-day swipe and 1-day view. iOS app results also depend on
-  SKAdNetwork enrolment (`skadnetwork_properties` on ad squads, `mobile_app_properties` on campaigns). Don't cut iOS
+  SKAdNetwork enrollment (`skadnetwork_properties` on ad squads, `mobile_app_properties` on campaigns). Don't cut iOS
   app campaigns on platform cost alone: check the MMM, or run `snapchat-incrementality-test`.
 - **Don't add budget behind tired creative.** Run the Phase 5 check before recommending increases.
 - **Hand-offs to the other Snapchat skills:**
@@ -268,8 +270,8 @@ Suggest the `schedule` skill to run it automatically.
   - audiences → `snapchat-audience-intelligence`;
   - geos → `snapchat-geo-expansion`;
   - "what changed?" → `snapchat-change-impact-review`;
-  - catalogs and dynamic ads → `snapchat-dynamic-ads-audit`;
-  - lead forms → `snapchat-lead-gen-auditor`;
+  - rejected ads and creative specs → `snapchat-ad-review-auditor`;
+  - time of day → `snapchat-dayparting-analysis`;
   - conversion trust → `snapchat-pixel-signal-health`;
   - lift → `snapchat-incrementality-test`;
   - everything → `snapchat-full-monty`.

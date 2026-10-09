@@ -27,8 +27,8 @@ ad squads that say ACTIVE but no longer deliver. A batch of them can exceed the 
 ## Object hierarchy and ids
 
 Organization -> ad account -> campaign -> ad squad (Snapchat's ad set) -> ad. An ad shows a creative, and a creative
-shows media. Catalogs belong to the organization. Ad account, campaign, ad squad, ad, creative and media ids are
-UUIDs; audience segment ids are numeric strings.
+shows media. Ad account, campaign, ad squad, ad, creative and media ids are UUIDs; the audience segment ids in an ad
+squad's targeting are numeric strings.
 
 ## Read tools (exact)
 
@@ -44,21 +44,11 @@ UUIDs; audience segment ids are numeric strings.
 | `snapchat_ads.get_snapchat_stats` | All performance; see below | see below |
 | `snapchat_ads.get_snapchat_change_history` | One entity's changes: who, when, before and after | `entity_id*`, `entity_type*` (`campaign`/`ad_squad`/`ad`/`creative`), `limit` (50) |
 | `snapchat_ads.get_snapchat_pixels` | The account's Snap Pixel and its status | `ad_account_id*` |
-| `snapchat_ads.get_snapchat_audience_segments` | Audiences: size, `targetable_status`, retention, source type | `ad_account_id*`, `segment_ids`, `limit` (100) |
 | `snapchat_ads.get_snapchat_targeting_geos` | Countries, or one country's regions, metros (DMAs) or ZIP codes | `level` (`country`/`region`/`metro`/`postal_code`), `country_code`, `limit` (1000) |
 | `snapchat_ads.get_snapchat_interest_categories` | Snap Lifestyle Categories for one country | `country_code*`, `is_hec`, `limit` (1000) |
-| `snapchat_ads.get_snapchat_catalogs` | An organization's product catalogs | `organization_id*`, `catalog_ids`, `limit` (100) |
-| `snapchat_ads.get_snapchat_product_feeds` | A catalog's feeds | `organization_id*`, `catalog_id*`, `product_feed_ids`, `limit` (100) |
-| `snapchat_ads.get_snapchat_product_sets` | A catalog's product sets | `organization_id*`, `catalog_id*`, `product_set_ids`, `limit` (100) |
-| `snapchat_ads.get_snapchat_feed_uploads` | A feed's uploads, with status and `issues_summary` | `organization_id*`, `catalog_id*`, `product_feed_id*`, `feed_upload_ids`, `limit` (100) |
-| `snapchat_ads.get_snapchat_dynamic_templates` | Dynamic ad templates | `ad_account_id*`, `dynamic_template_ids`, `limit` (100) |
-| `snapchat_ads.get_snapchat_creative_elements` | Collection ad tiles | `ad_account_id*`, `creative_element_ids`, `limit` (100) |
-| `snapchat_ads.get_snapchat_interaction_zones` | Collection ad tile rows | `ad_account_id*`, `interaction_zone_ids`, `limit` (100) |
-| `snapchat_ads.get_snapchat_lead_gen_forms` | Lead forms (never the leads) | `ad_account_id*`, `lead_generation_form_ids`, `limit` (100) |
-| `snapchat_ads.get_snapchat_lead_gen_webhooks` | Where a form's leads are sent | `ad_account_id*`, `lead_generation_form_id*` |
 
-Every list returns `count`, `status_counts` and `complete`. When `complete` is false the listing stopped at `limit` or
-a page cap: say so, and don't call missing entities absent.
+Every list returns `count` and `complete`, plus `status_counts` when its entities have a status. When `complete`
+is false the listing stopped at `limit` or a page cap: say so, and don't call missing entities absent.
 
 Never call `snapchat_ads.get_snapchat_signal_quality`, even though the pixel tool's description points to it. It's held
 back until Snap approves showing signal readiness.
@@ -86,8 +76,9 @@ Rules the tool enforces, and the ones it leaves to you:
   no breakdown.
 - **Reach comes only from `TOTAL`.** `uniques` and `frequency` (and `attachment_*`) are returned only that way. Never
   add them across rows.
-- **`report_dimension` has limits.** It isn't served at HOUR, and only within one window: 31 days at DAY, or a TOTAL.
-  Snap's `35+` age bucket overlaps 35-44, 45-54 and 55+; never add it to them.
+- **`report_dimension` has limits.** It isn't served at HOUR, and only within one window: 31 days at DAY (30 when
+  the range crosses a daylight-saving change where clocks go back), or a TOTAL. Snap's `35+` age bucket overlaps
+  35-44, 45-54 and 55+; never add it to them.
 - **Some data isn't final yet.** Delivery after `finalized_data_end_time`, and conversions after
   `conversion_data_processed_end_time`, can still change. The response's `notes` says so; pass that on to the user.
 
@@ -140,7 +131,8 @@ APP_INSTALL`). `pacing_level: CAMPAIGN` means Smart Budgets: Snap sets the ad sq
 
 - **Frequency caps:** ad squads come back without their frequency-cap settings. Judge frequency from the `frequency`
   metric.
-- **Leads:** they are never read. Lead skills see forms, webhooks and `native_leads` counts only.
+- **Audiences, catalogs and lead forms:** the connector doesn't read them. An ad squad's targeting shows its segment
+  ids, and a lead ad's creative its `lead_generation_form_id`.
 - **No account-wide change log:** `get_snapchat_change_history` takes one entity at a time, and history starts on
   16 July 2019.
 - **Signal quality:** held back, as above.
@@ -173,7 +165,7 @@ risk. Applying it is a separate step.
 
 **Never:**
 - delete, create, or set anything `ACTIVE` (that starts spend);
-- change targeting, creatives, audiences, catalogs, lead forms or webhooks.
+- change targeting, ad schedules, creatives or media.
 
 The user does those in Ads Manager, or with the tools directly.
 
