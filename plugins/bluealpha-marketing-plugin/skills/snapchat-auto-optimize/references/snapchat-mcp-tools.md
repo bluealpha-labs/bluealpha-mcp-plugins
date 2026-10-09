@@ -160,12 +160,45 @@ compare cost per install with cost per purchase. All names below were accepted b
 Campaign objectives are in `objective_v2_properties` (for example `objective_v2_type: APP_PROMOTION`, `promotion_type:
 APP_INSTALL`). `pacing_level: CAMPAIGN` means Smart Budgets: Snap sets the ad squad budgets from the campaign's.
 
+## Change history: verified
+
+- **Entries come newest first,** each with `action` (`CREATED` or `UPDATED`), `event_at` in UTC, `email`, and the app
+  the change was made through (`app_name`, for example "Snapchat SSO" for Ads Manager).
+- **`update_value_records`** holds a `before_value` and an `after_value` per field (`daily_budget`, `bid`,
+  `bid_strategy`, `targeting`, `status`, ...). On a `CREATED` entry it holds only the starting values.
+- **Snap writes bid strategies in lowercase** (`auto_bid`, `target_cost`) and an `AUTO_BID` bid as the text
+  "auto bid", with an `auto_bid` true or false field alongside. The update tools take the uppercase values.
+
+## Catalogs, dynamic ads and lead ads
+
+How the entities link, from the connector's source:
+
+| Link | Field |
+|---|---|
+| A campaign's catalog | the campaign's `product_properties.catalog_id` |
+| An ad squad's product set | the ad squad's `product_properties.product_set_id` |
+| A dynamic creative's set and template | the creative's `dynamic_render_properties` (`product_set_id`, `dynamic_template_id`) |
+| A collection creative's tiles | the creative's `collection_properties.interaction_zone_id` |
+| A lead ad's form | the creative's `lead_generation_form_id` (creative `type: LEAD_GENERATION`) |
+
+- **Dynamic ads** have `render_type: DYNAMIC`, and their creative must name their ad squad's product set.
+- **Verified live on a new catalog:**
+  - `default_product_set_id` is the "All Products" set, with an empty filter;
+  - `event_sources` is absent when none is set;
+  - product sets carry a `status`: `LIVE`, or `MATERIALIZING` while Snap builds the set after it's created or its
+    filter changes;
+  - a feed upload starts `INITIALIZED`, with its item counts and `issues_summary` in `summary`.
+- **Lead forms, verified live:** `form_fields` (for example `FIRST_NAME`, `EMAIL`), `strategy_type` (`MORE_VOLUME`),
+  `default_end_page`, `privacy_policy_url` and `status`. A form with no webhook returns an empty `webhooks` list.
+
 ## Not exposed
 
 - **Frequency caps:** ad squads come back without their frequency-cap settings. Judge frequency from the `frequency`
   metric.
 - **Audiences, catalogs and lead forms:** the connector doesn't read them. An ad squad's targeting shows its segment
   ids, and a lead ad's creative its `lead_generation_form_id`.
+- **Products:** the products in a catalog, how many a product set holds, and stats by product. Feed uploads give item
+  counts; dynamic ads give stats by ad squad, and so by product set.
 - **No account-wide change log:** `get_snapchat_change_history` takes one entity at a time, and history starts on
   16 July 2019.
 - **Signal quality:** held back, as above.
