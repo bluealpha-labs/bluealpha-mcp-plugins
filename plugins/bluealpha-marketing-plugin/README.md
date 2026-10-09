@@ -97,6 +97,13 @@ Meta-specific (no TikTok/Google analogue):
 - `meta-placement-performance` — publisher_platform × platform_position; Audience Network waste audit
 - `meta-capi-signal-health` — CAPI/dedup, Event Match Quality, AEM 8-event, attribution, SKAN/iOS — gates trust in every CPA/ROAS
 
+**Snapchat Ads skills (new in v0.7.0):**
+
+Analysis-first. With Snapchat write access, a skill can also apply pause, budget, bid and rename changes when you ask,
+one confirmed change at a time. See `SNAPCHAT_SKILLS.md`.
+
+- `snapchat-auto-optimize`: full Snapchat account cycle (delivery status, objective vs optimization goal, pacing, goal-matched budget reallocation, settings audit)
+
 ## What you can ask it to do
 
 Once installed, just talk to Claude. Some prompts to try:
