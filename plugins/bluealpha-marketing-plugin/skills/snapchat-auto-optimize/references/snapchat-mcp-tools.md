@@ -102,6 +102,30 @@ Rules the tool enforces, and the ones it leaves to you:
   before-and-after comparison, two TOTAL reads are smaller and exact. Keep DAY series for the few ads whose trend
   shape matters.
 
+## Splits (`report_dimension`): verified
+
+| Split | Comes back as | Results (conversions) by it |
+|---|---|---|
+| `age`, `gender`, `age,gender` | `age_bucket` (`13-17` … `55+`, plus Snap's overlapping `35+`), `gender` (`female`, `male`, `unknown`) | yes |
+| `os` | `operating_system` (for example `ios`) | yes |
+| `make` | `make` (for example `apple`) | no: delivery only |
+| `region` | `region`, a lowercase state or region code (`tx`) | no: delivery only |
+| `dma` | `dma`, a numeric code; it equals the metro `id` from `get_snapchat_targeting_geos` (`501` is New York) | no: delivery only |
+| `lifestyle_category` | `interest_category_id` and `interest_category_name` | no: delivery only |
+
+- **Delivery only:** checked on an app advertiser. For the "no" splits, every row's installs, sign-ups and purchases
+  came back 0 while the campaign had hundreds of each; spend, impressions and swipes were all there. The rule for
+  any account: if every row's result is 0 while the entity has results, Snap isn't reporting results by that split.
+  Say so; never read it as zero results. Use swipes and cost per swipe as the Snap-side signal, and get results by
+  geo from the client's own data.
+- **Interest rows overlap.** A person sits in many categories, so the rows add up to far more than the campaign spent.
+  Never add them or treat them as shares; compare each row's swipe rate with the campaign's.
+- **`unknown` rows** (age, gender, region, DMA) are real delivery that Snap couldn't place. Report them; don't spread
+  them across the others.
+- **Targeting changes show up in splits.** A window that crosses a targeting change mixes both settings. For
+  example, 13-17 spend in a window that ends after an 18+ change happened before the change. Check the ad squad's
+  change history for the window.
+
 ## What's live: `delivery_status`, not `status`
 
 `status: ACTIVE` only means not paused. Delivery is in `delivery_status`:
